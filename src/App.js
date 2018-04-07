@@ -15,6 +15,7 @@ import TodoList from './container/todoList';
 import Main from './container/Main';
 import SingleEvent from './container/SingleEvent';
 import EventList from './container/EventList';
+import Posts from "./container/Posts";
 
 
 //Set up your routes 
@@ -62,6 +63,7 @@ const Routes = () => (
         <li><Link to="/eventlist">Event List</Link></li>
         <li><Link to="/topics">Topics</Link></li>
         <li><Link to="/todolist">TodoList</Link></li>
+        <li><Link to="/posts">Posts</Link></li>
 
       </ul>
 
@@ -71,6 +73,7 @@ const Routes = () => (
       <Route path="/event" component={SingleEvent}/>
       <Route path="/eventlist" component={EventList}/>
       <Route path="/todolist" component={TodoList}/>
+      <Route path="/posts" component={Posts}/>
 
     </div>
   </Router>
