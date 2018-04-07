@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'react-redux';
 import {
-  BrowserRouter as Router, 
+  BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
@@ -16,9 +16,6 @@ import Main from './container/Main';
 import SingleEvent from './container/SingleEvent';
 import EventList from './container/EventList';
 import Posts from "./container/Posts";
-
-
-//Set up your routes 
 
 const Topic = ({ match }) => (
   <div>
@@ -47,12 +44,15 @@ const Topics = ({ match }) => (
       </li>
     </ul>
 
-    <Route path={`${match.path}/:topicId`} component={Topic}/>
+    <Route path={`${match.path}/:topicId`} component={Topic} />
     <Route exact path={match.path} render={() => (
       <h3>Please select a topic.</h3>
-    )}/>
+    )} />
   </div>
 )
+
+
+//Set up your routes 
 
 const Routes = () => (
   <Router>
@@ -64,17 +64,14 @@ const Routes = () => (
         <li><Link to="/topics">Topics</Link></li>
         <li><Link to="/todolist">TodoList</Link></li>
         <li><Link to="/posts">Posts</Link></li>
-
       </ul>
+      <hr />
 
-      <hr/>
-
-      <Route exact path="/" component={Main}/>
-      <Route path="/event" component={SingleEvent}/>
-      <Route path="/eventlist" component={EventList}/>
-      <Route path="/todolist" component={TodoList}/>
-      <Route path="/posts" component={Posts}/>
-
+      <Route exact path="/" component={Main} />
+      <Route path="/event" component={SingleEvent} />
+      <Route path="/eventlist" component={EventList} />
+      <Route path="/todolist" component={TodoList} />
+      <Route path="/posts" component={Posts} />
     </div>
   </Router>
 )
