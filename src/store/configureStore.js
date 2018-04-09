@@ -3,6 +3,7 @@ import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
 import * as actionCreators from '../actions';
 
+
 export default function configureStore(preloadedState) {
   const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__({ actionCreators });

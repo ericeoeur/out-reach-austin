@@ -6,6 +6,9 @@ import {
   Link
 } from 'react-router-dom';
 
+//The Glue that holds everything togehter
+import { Provider } from 'react-redux'; 
+
 //Import CSS and any Images
 import logo from './logo.svg';
 import './App.css';

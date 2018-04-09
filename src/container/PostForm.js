@@ -1,4 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as EventActions from '../actions/events';
+
 
 class PostForm extends Component {
   constructor(props) {
@@ -64,5 +68,21 @@ class PostForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    todos: state.todos
+  };
+}
 
-export default PostForm;
+function mapDispachToProps(dispatch) {
+  return {
+    actions: bindActionCreators(EventActions, dispatch)
+  };
+
+}
+
+
+
+export default connect(mapStateToProps, mapDispachToProps)(PostForm);
+
+//export default PostForm;
