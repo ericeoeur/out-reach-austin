@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import store from './store/configureStore';
 import { bindActionCreators } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
+
 
 //The Glue that holds everything togehter
 import { Provider } from 'react-redux'; 
@@ -57,7 +60,8 @@ const Topics = ({ match }) => (
 
 //Set up your routes 
 
-const Routes = () => (
+const Routes = ({store}) => (
+  <Provider store={store}>
   <Router>
     <div>
       <ul>
@@ -77,7 +81,13 @@ const Routes = () => (
       <Route path="/posts" component={Posts} />
     </div>
   </Router>
+  </Provider>
 )
+
+Routes.propTypes = {
+  store: PropTypes.object.isRequired
+}
+
 export default Routes
 
 

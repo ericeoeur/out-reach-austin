@@ -4,6 +4,17 @@ import thunk from 'redux-thunk';
 import * as actionCreators from '../actions';
 
 
+// const initialState =  {};
+
+// const middleware = [thunk];
+
+
+// const store = createStore (rootReducer, initialState, applyMiddleware(...middleware));
+
+// export default store; 
+
+//below works
+
 export default function configureStore(preloadedState) {
   const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__({ actionCreators });
