@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as EventActions from '../actions/events';
+import * as EventActions from '../constants/EventFilters';
 
 
 class PostForm extends Component {

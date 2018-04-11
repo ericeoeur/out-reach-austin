@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import store from './store/configureStore';
-import { bindActionCreators } from 'react-redux';
+//import store from './store/configureStore';
+//import { bindActionCreators } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,11 +9,10 @@ import {
 } from 'react-router-dom';
 
 
-//The Glue that holds everything togehter
+//The Glue that holds everything together
 import { Provider } from 'react-redux'; 
 
 //Import CSS and any Images
-import logo from './logo.svg';
 import './App.css';
 
 //Import components
@@ -23,43 +22,8 @@ import SingleEvent from './container/SingleEvent';
 import EventList from './container/EventList';
 import Posts from "./container/Posts";
 
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
 
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
-
-    <Route path={`${match.path}/:topicId`} component={Topic} />
-    <Route exact path={match.path} render={() => (
-      <h3>Please select a topic.</h3>
-    )} />
-  </div>
-)
-
-
-//Set up your routes 
-
+//Set up your routes. Make sure your store is connected in your provider.
 const Routes = ({store}) => (
   <Provider store={store}>
   <Router>
@@ -68,8 +32,7 @@ const Routes = ({store}) => (
         <li><Link to="/">Main</Link></li>
         <li><Link to="/event">Single Event</Link></li>
         <li><Link to="/eventlist">Event List</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-        <li><Link to="/todolist">TodoList</Link></li>
+              <li><Link to="/todolist">TodoList</Link></li>
         <li><Link to="/posts">Posts</Link></li>
       </ul>
       <hr />

@@ -4,10 +4,6 @@ import Events from './event_listing';
 var createReactClass = require('create-react-class');
 
 
-
-
-
-
 const EventList = createReactClass({
   render() {
     return (

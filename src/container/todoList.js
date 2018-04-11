@@ -26,7 +26,8 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispachToProps(dispatch) {
+
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(TodoActions, dispatch)
   };
@@ -34,5 +35,5 @@ function mapDispachToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispachToProps)(TodoList);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
 

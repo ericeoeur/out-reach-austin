@@ -4,10 +4,10 @@ export default function fetchDogs() {
 
   return function (dispatch) {
     dispatch(fetch_dogs_pending())
-    return axios.get('https://dog.ceo/dog-api/').then(
+    return axios.get('https://dog.ceo/dog-api/')
+    .then(
       data => dispatch(fetch_dogs_success(data)),
       error => dispatch(fetch_dogs_error(error))
-
     );
   };
 

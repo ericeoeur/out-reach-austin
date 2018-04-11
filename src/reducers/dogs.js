@@ -1,4 +1,4 @@
-const initialState = {
+const preloadedState = {
   fetching: false, 
   data: null,
   error: null, 
