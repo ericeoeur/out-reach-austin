@@ -1,5 +1,5 @@
 /*
-Simple Todo List example to learn react redux. 
+Simple Todo List example to learn react redux. Reference. 
 */
 
 import React, { Component } from 'react';
