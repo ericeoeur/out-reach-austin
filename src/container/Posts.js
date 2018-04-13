@@ -1,3 +1,8 @@
+/*
+Simple Todo List App example to learn react redux. 
+*/
+
+
 import React, { Component } from 'react'
 import PostForm from './PostForm';
 import PropTypes from 'prop-types';
@@ -8,6 +13,12 @@ class Posts extends Component {
   componentWillMount() {
     this.props.fetchPosts();
   }
+
+componentWillReceiveProps(nextProps){
+  if(nextProps.newPost){
+    this.props.posts.unshift(nextProps.newPost);
+  }
+}
  
   render() {
     const postItems = this.props.posts.map(post => (
@@ -29,18 +40,16 @@ class Posts extends Component {
 
 Posts.propTypes =  {
   fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  newPost: PropTypes.object
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.items
+  posts: state.posts.items,
+  newPost: state.posts.item
 });
 
-
 export default connect(mapStateToProps, { fetchPosts })(Posts);
-
-
-
 
 // import React, { Component } from 'react'
 // import PostForm from './PostForm';
@@ -82,3 +91,4 @@ export default connect(mapStateToProps, { fetchPosts })(Posts);
 
 
 // export default Posts;
+

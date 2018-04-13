@@ -1,9 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
-
 const app = express();
-
 const SELECT_ALL_EVENTS_QUERY = 'SELECT * FROM event_listing';
 
 const connection = mysql.createConnection({
@@ -23,10 +21,8 @@ connection.connect(err => {
 console.log(connection);
 
 app.use(cors());
-
 app.get('/', (req, res) => {
   res.send('go to /events to see events')
-
 });
 
 //URL Exmaple to add Event Title, Start Date, Start time, and Long Description 
@@ -34,7 +30,12 @@ app.get('/', (req, res) => {
 
 //ADDING AN EVENT
 app.get('/events/add', (req, res) => {
-  const { event_title, start_date, start_time1, event_description_long } = req.query;
+  const { 
+    event_title, 
+    start_date, 
+    start_time1, 
+    event_description_long 
+  } = req.query;
   //console.log (event_title, start_date, start_time1, event_description_long);
   const INSERT_EVENTS_QUERY = `INSERT INTO event_listing (event_title, start_date, start_time1, event_description_long) VALUES('${event_title}', ${start_date}, ${start_time1}, '${event_description_long}')`;
   connection.query(INSERT_EVENTS_QUERY, (err, results) => {

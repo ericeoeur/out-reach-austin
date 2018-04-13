@@ -10,7 +10,6 @@ import store from './store/configureStore';
 
 //const store = configureStore(); 
 
-
 ReactDOM.render(
   <Routes store={store} />,
   document.getElementById('root'));

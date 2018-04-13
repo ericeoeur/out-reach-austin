@@ -1,3 +1,8 @@
+/*
+Page where all events will go. 
+*/
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Events from './event_listing';

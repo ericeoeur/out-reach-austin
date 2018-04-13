@@ -1,3 +1,8 @@
+/*
+event_listing.js shows all the events from the API. 
+*/
+
+
 //This is a component that pulls from an the SQL API and adds information about an event. 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
@@ -5,12 +10,100 @@ import { connect } from 'react-redux';
 
 //Import Action fetchEvents from actions/eventActions.js 
 import { fetchEvents } from '../actions/eventActions';
+import EditEventForm from './EditEventForm';
 
 class Events extends Component {
   componentWillMount() {
-    console.log("this is mounting");
+    console.log("this is fetchEvents mounting");
     this.props.fetchEvents();
   }
+
+  render() {
+    return (<div>
+      {this.props.events && this.props.events.map(event => (
+        <div key={event.id}>
+
+          <h1>{event.id}. {event.event_title}</h1>
+          <p>Start Date: {event.start_date}</p>
+          <p>Time: {event.start_time1}-{event.end_time1} </p>
+          <p>Event Description: {event.event_description_long}</p>
+          <p>Location: {event.event_location}</p>
+          <p>Event Type: {event.event_type}</p>
+          <p>Cost: {event.event_cost} </p>
+          <p>Event Organizer {event.event_organizer}</p>
+          <p>Event Link: {event.event_link}</p>
+          <p>Event Image Link: {event.image_link}</p>
+          <p><i>Event Listing Created By: {event.created_by} on {event.created_date}</i></p>
+          <br />
+
+          <div className="event-edit">
+            <EditEventForm
+              key={event.id}
+              event_title={event.event_title}
+              start_date={event.start_date}
+              start_time1={event.start_time1}
+              end_time1={event.end_time1}
+              event_description_long={event.event_description_long}
+              event_location={event.event_location}
+              event_type={event.event_type}
+              event_cost={event.event_cost}
+              event_organizer={event.event_organizer}
+              event_link={event.event_link}
+              image_link={event.image_link}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+    )
+  }
+}
+
+Events.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  events: PropTypes.array.isRequired
+}
+
+//mapping items to the state to the post poerpty. 
+const mapStateToProps = state => ({
+  events: state.events.items
+});
+
+//SUPER IMPORTANT!!!
+export default connect(mapStateToProps, { fetchEvents })(Events);
+
+
+
+// <div className="event-edit">
+// <input 
+//   value={event.event_title} 
+//   onChange={e => this.setState({ event: { ...event, event_title: e.target.value } })} 
+// />
+
+// <input 
+//   value={event.start_date} 
+//   onChange={e => this.setState({ event: { ...event, start_date: e.target.value } })} 
+//   />
+
+// <input 
+//   value={event.start_time1} 
+//   onChange={e => this.setState({ event: { ...event, start_time1: e.target.value } })} 
+//   />
+
+// <input 
+//   value={event.event_description_long} 
+//   onChange={e => this.setState({ event: { ...event, event_description_long: e.target.value } })} 
+//   />
+
+// <button onClick={this.addEvent}>Edit Events</button>
+// </div>
+
+
+// class Events extends Component {
+//   componentWillMount() {
+//     console.log("this is fetchEvents mounting");
+//     this.props.fetchEvents();
+//   }
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -44,7 +137,7 @@ class Events extends Component {
   //   fetch(`http://localhost:4000/events/add?event_title=${event.event_title}&start_date=${event.start_date}&start_time1=${event.start_time1}&event_description_long=${event.event_description_long}`)
   //     .then(res => this.getEvents)
   //     .catch(err => console.log(err))
-  //}
+  // }
 
   //console.log (event_title, start_date, start_time1, event_description_long);
 
@@ -78,38 +171,58 @@ class Events extends Component {
   //   );
   // }
 
-  render() {
-    return (<div>
-      {this.props.events && this.props.events.map(event => (
-        <div key={event.id}>
-          <h1>{event.event_title}</h1>
-          <p>{event.start_date},{event.start_time1} </p>
-          <p>{event.event_description_long}</p>
-          <h3>Edit Event Here</h3>
-          <input value={event.event_title} onChange={e => this.setState({ event: { ...event, event_title: e.target.value } })} />
-          <input value={event.start_date} onChange={e => this.setState({ event: { ...event, start_date: e.target.value } })} />
-          <input value={event.start_time1} onChange={e => this.setState({ event: { ...event, start_time1: e.target.value } })} />
-          <input value={event.event_description_long} onChange={e => this.setState({ event: { ...event, event_description_long: e.target.value } })} />
-          <button onClick={this.addEvent}>Edit Events</button>
-        </div>
-      ))}
-    </div>
-    )
-  }
-}
+//   render() {
+//     return (<div>
+//       {this.props.events && this.props.events.map(event => (
+//         <div key={event.id}>
 
-//mapping items to the state to the post poerpty. 
+//           <h1>{event.id}. {event.event_title}</h1>
+//           <p>Start Date: {event.start_date}</p>
+//           <p>Time: {event.start_time1}-{event.end_time1} </p>
+//           <p>Event Description: {event.event_description_long}</p>
+//           <p>Location: {event.event_location}</p>
+//           <p>Event Type: {event.event_type}</p>
+//           <p>Cost: {event.event_cost} </p>
+//           <p>Event Organizer {event.event_organizer}</p>
+//           <p>Event Link: {event.event_link}</p>
+//           <p>Event Image Link: {event.image_link}</p>
+//           <p><i>Event Listing Created By: {event.created_by} on {event.created_date}</i></p>
+//           <br />
 
-Events.propTypes = {
-  fetchEvents: PropTypes.func.isRequired,
-  events: PropTypes.array.isRequired
-}
+//           <div className="event-edit">
+//             <EditEventForm
+//               key={event.id}
+//               event_title={event.event_title}
+//               start_date={event.start_date}  
+//               start_time1={event.start_time1} 
+//               end_time1={event.end_time1}
+//               event_description_long={event.event_description_long}
+//               event_location={event.event_location}
+//               event_type={event.event_type}
+//               event_cost={event.event_cost}
+//               event_organizer={event.event_organizer}
+//               event_link={event.event_link}
+//               image_link={event.image_link} 
+//               />
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//     )
+//   }
+// }
+
+// //mapping items to the state to the post poerpty. 
+
+// Events.propTypes = {
+//   fetchEvents: PropTypes.func.isRequired,
+//   events: PropTypes.array.isRequired
+// }
 
 
-const mapStateToProps = state => ({
-  events: state.events.items
-});
+// const mapStateToProps = state => ({
+//   events: state.events.items
+// });
 
-//SUPER IMPORTANT!!!
-export default connect(mapStateToProps, { fetchEvents })(Events);
-
+// //SUPER IMPORTANT!!!
+// export default connect(mapStateToProps, { fetchEvents })(Events);
