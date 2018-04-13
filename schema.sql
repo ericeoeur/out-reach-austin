@@ -1,7 +1,7 @@
 ### Schema
 
 DROP DATABASE IF EXISTS `out-reach-austin_db`;
-CREATE DATABASE `out-reach-austin_db`event_instance_exception;
+CREATE DATABASE `out-reach-austin_db`;
 
 USE `out-reach-austin_db`;
 

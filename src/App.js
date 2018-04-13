@@ -9,6 +9,8 @@ import {
 } from 'react-router-dom';
 
 
+
+
 //The Glue that holds everything togehter
 import { Provider } from 'react-redux'; 
 
@@ -22,6 +24,7 @@ import Main from './container/Main';
 import SingleEvent from './container/SingleEvent';
 import EventList from './container/EventList';
 import Posts from "./container/Posts";
+import ImageUpload from './container/ImageUpload';
 
 const Topic = ({ match }) => (
   <div>
@@ -88,7 +91,8 @@ Routes.propTypes = {
   store: PropTypes.object.isRequired
 }
 
-export default Routes
+export default Routes;
+
 
 
 

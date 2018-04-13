@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TodoActions from '../actions/todos';
 
+import ImageUpload from './ImageUpload';
+
 
 
 
@@ -55,6 +57,8 @@ class Events extends Component {
     return (
       <div className="app">
         {events.map(this.renderEvent)}
+
+        <ImageUpload />
 
         <div>
           <input value={event.event_title} onChange={e => this.setState({ event: { ...event, event_title: e.target.value } })} />
