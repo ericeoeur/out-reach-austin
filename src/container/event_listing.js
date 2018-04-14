@@ -2,6 +2,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withStyles } from 'material-ui/styles';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import EventCard from './EventCard';
 
 //Import Action fetchEvents from actions/eventActions.js 
 import { fetchEvents } from '../actions/eventActions';
@@ -11,18 +15,7 @@ class Events extends Component {
     console.log("this is mounting");
     this.props.fetchEvents();
   }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     events: [],
-  //     event: {
-  //       event_title: 'example event',
-  //       start_date: '030318',
-  //       start_time1: '500',
-  //       event_description_long: 'This is a sample description'
-  //     }
-  //   }
-  // }
+  
 
   //http://localhost:4000/events/add?event_title=test3&start_date=100318&start_time1=3&event_description_long=testdescription3
 
@@ -79,18 +72,18 @@ class Events extends Component {
   // }
 
   render() {
-    return (<div>
+    return (
+    <div>
+      
       {this.props.events && this.props.events.map(event => (
-        <div key={event.id}>
-          <h1>{event.event_title}</h1>
-          <p>{event.start_date},{event.start_time1} </p>
-          <p>{event.event_description_long}</p>
-          <h3>Edit Event Here</h3>
-          <input value={event.event_title} onChange={e => this.setState({ event: { ...event, event_title: e.target.value } })} />
-          <input value={event.start_date} onChange={e => this.setState({ event: { ...event, start_date: e.target.value } })} />
-          <input value={event.start_time1} onChange={e => this.setState({ event: { ...event, start_time1: e.target.value } })} />
-          <input value={event.event_description_long} onChange={e => this.setState({ event: { ...event, event_description_long: e.target.value } })} />
-          <button onClick={this.addEvent}>Edit Events</button>
+        <div key={event.id} 
+        style={{paddingBottom: '8px', paddingLeft: '8px'}}>
+          <EventCard
+            title={event.event_title}
+            date={event.start_date}
+            time={event.start_time1}
+            content={event.event_description_long}
+          />
         </div>
       ))}
     </div>

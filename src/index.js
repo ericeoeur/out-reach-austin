@@ -9,9 +9,12 @@ import { Provider } from 'react-redux';
 import store from './store/configureStore';
 
 //const store = configureStore(); 
+//import configureStore from './store/configureStore';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//const store = configureStore(); 
 
 
 ReactDOM.render(
-  <Routes store={store} />,
+  <MuiThemeProvider><Routes store={store} /></MuiThemeProvider>,
   document.getElementById('root'));
 registerServiceWorker();

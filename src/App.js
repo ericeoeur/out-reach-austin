@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 
 //Import CSS and any Images
 import './App.css';
+import NavBar from './container/NavBar';
 
 //Import components
 import TodoList from './container/todoList';
@@ -21,37 +22,41 @@ import Main from './container/Main';
 import SingleEvent from './container/SingleEvent';
 import EventList from './container/EventList';
 import Posts from "./container/Posts";
-
+import Alice from "./container/Alice";
+import MyComponent from './container/MyComponent';
+import AppBar from 'material-ui/AppBar';
 
 //Set up your routes. Make sure your store is connected in your provider.
+
+
 const Routes = ({store}) => (
   <Provider store={store}>
   <Router>
+  
+    
     <div>
-      <ul>
-        <li><Link to="/">Main</Link></li>
-        <li><Link to="/event">Single Event</Link></li>
-        <li><Link to="/eventlist">Event List</Link></li>
-              <li><Link to="/todolist">TodoList</Link></li>
-        <li><Link to="/posts">Posts</Link></li>
-      </ul>
-      <hr />
-
+    <NavBar/>
       <Route exact path="/" component={Main} />
       <Route path="/event" component={SingleEvent} />
       <Route path="/eventlist" component={EventList} />
       <Route path="/todolist" component={TodoList} />
       <Route path="/posts" component={Posts} />
+      <Route path="/Alice" component={Alice} />
+      <Route path="/MyComponent" component={MyComponent} />
     </div>
   </Router>
   </Provider>
 )
 
+
+
+
+
 Routes.propTypes = {
   store: PropTypes.object.isRequired
 }
 
-export default Routes
+export default Routes;
 
 
 
