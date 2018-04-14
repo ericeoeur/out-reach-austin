@@ -1,29 +1,60 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
+
+//import base, {firebaseApp} from "../base";
+
+// firebase.initializeApp({
+//     apiKey: "AIzaSyBks8H9WEfUUZgsf2HJ8jTRoCZ3R4vq6eo",
+//     authDomain: "outreach-austin-db.firebaseapp.com",
+//     databaseURL: "https://outreach-austin-db.firebaseio.com",
+//     storageBucket: "outreach-austin-db.appspot.com"
+// });
 
 class ImageUpload extends Component {
     state = {
-        selectedFile: null
-    }
-    fileSelectedHandler = event => {
-        console.log(event.target.files[0]);
+        isUploading: false,
+        progress: 0,
+        avatarURL: ''
+    };
+    handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+
+    handleProgress = (progress) => this.setState({ progress });
+
+    handleUploadError = (error) => {
+        this.setState({ isUploading: false });
+        console.error(error);
     }
 
-    fileUploadHandler =()=> {
-        this.setState
+    handleUploadSuccess = (filename) => {
+        this.setState({ avatar: filename, progress: 100, isUploading: false });
+        console.log(filename); 
+        firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({ avatarURL: url }));
+    };
+    
+    render() {
+        return (
+            <div>
+                <form>               
+                    {this.state.isUploading &&
+                        <p>Progress: {this.state.progress}</p>
+                    }
+                    {this.state.avatarURL &&
+                        <img src={this.state.avatarURL} />
+                    }
+                    <FileUploader
+                        accept="image/*"
+                        name="avatar"
+                        randomizeFilename
+                        storageRef={firebase.storage().ref('images')}
+                        onUploadStart={this.handleUploadStart}
+                        onUploadError={this.handleUploadError}
+                        onUploadSuccess={this.handleUploadSuccess}
+                        onProgress={this.handleProgress}
+                    />
+                </form>
+            </div>
+        );
     }
-
-render() {
-    return(
-        
-        <div className = "App">
-        <input type= "file" onChange={this.fileSelectedHandler}/>
-        <button onClick={this.fileUploadHandler}>Upload</button>
-        </div>
-    );
 }
-
-
-}
-
-
 export default ImageUpload;

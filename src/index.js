@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Routes from './App';
+import rootReducer from './reducers/index.js';
+import EventList from './container/EventList';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'; 
-import configureStore from './store/configureStore';
+import store from './store/configureStore';
 
-const store = configureStore(); 
-
+//const store = configureStore(); 
+//import configureStore from './store/configureStore';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//const store = configureStore(); 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-  , document.getElementById('root'));
+  <MuiThemeProvider><Routes store={store} /></MuiThemeProvider>,
+  document.getElementById('root'));
 registerServiceWorker();

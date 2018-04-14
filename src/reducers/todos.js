@@ -1,12 +1,13 @@
 import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED } from '../constants/ActionTypes';
 
-const initialState = [{
+const preloadedState = [{
   text: 'Use Redux',
   completed: false,
   id: 0
 }];
 
-export default function todos(state = initialState, action) {
+export default function todos(state = preloadedState, action) {
+  console.log("todos is working and reducing");
   switch (action.type) {
   case ADD_TODO:
     
