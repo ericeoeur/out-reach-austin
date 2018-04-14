@@ -3,7 +3,12 @@ import firebase from 'firebase';
 import FileUploader from 'react-firebase-file-uploader';
 //import base, {firebaseApp} from "../base";
 
-firebase.initializeApp();
+firebase.initializeApp({
+    apiKey: "AIzaSyBks8H9WEfUUZgsf2HJ8jTRoCZ3R4vq6eo",
+    authDomain: "outreach-austin-db.firebaseapp.com",
+    databaseURL: "https://outreach-austin-db.firebaseio.com",
+    storageBucket: "outreach-austin-db.appspot.com"
+});
 
 class ImageUpload extends Component {
 state = {
@@ -22,7 +27,7 @@ console.error(error);
 }
 handleUploadSuccess = (filename) => {
 this.setState({avatar: filename, progress: 100, isUploading: false});
-firebase.storage().ref('out-reach-austin').child(filename).getDownloadURL().then(url => this.setState({avatarURL: url}));
+firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({avatarURL: url}));
 };
 render() {
 return (
@@ -41,7 +46,7 @@ return (
 accept="image/*"
 name="avatar"
 randomizeFilename
- storageRef={firebase.storage().ref('out-reach-austin')}
+ storageRef={firebase.storage().ref('images')}
 onUploadStart={this.handleUploadStart}
 onUploadError={this.handleUploadError}
 onUploadSuccess={this.handleUploadSuccess}
