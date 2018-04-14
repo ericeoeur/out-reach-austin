@@ -105,6 +105,17 @@ export default connect(mapStateToProps, { fetchEvents })(Events);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 // <div className="event-edit">
 // <input 
 //   value={event.event_title} 

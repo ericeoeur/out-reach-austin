@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as EventActions from '../actions/types';
 import _ from 'lodash'; 
+import ImageUpload from './ImageUpload';
 
 
 //Import Action fetchEvents from actions/eventActions.js 
@@ -117,7 +118,7 @@ class AddEventForm extends Component {
       event_cost: this.state.event_cost,
       event_organizer: this.state.event_organizer,
       event_link: this.state.event_link,
-      image_link: this.state.image_link
+      image_link: this.state.avatarURL
     };
     //Need Method here below is the redux method
     // database.createEvent(newEvent);
@@ -244,12 +245,16 @@ class AddEventForm extends Component {
               />
 
               <p>Image</p>
+              <ImageUpload 
+                value={this.props.avatar}
+              />
+              
               <input
                 type="text"
                 name="image_link"
                 onChange={this.onInputChange}
                 ref="image_link"
-                value={this.state.image_link}
+                value={this.state.avatarURL}
               />
             </form>
 
