@@ -1,16 +1,17 @@
+/*
+All Routing goes here. 
+*/
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-//import store from './store/configureStore';
-//import { bindActionCreators } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
 
-
 //The Glue that holds everything together
-import { Provider } from 'react-redux'; 
+import { Provider } from 'react-redux';
 
 //Import CSS and any Images
 import './App.css';
@@ -25,6 +26,8 @@ import Posts from "./container/Posts";
 import Alice from "./container/Alice";
 import MyComponent from './container/MyComponent';
 import AppBar from 'material-ui/AppBar';
+import AddEventForm from "./container/AddEventForm";
+
 
 //Set up your routes. Make sure your store is connected in your provider.
 
@@ -43,13 +46,11 @@ const Routes = ({store}) => (
       <Route path="/posts" component={Posts} />
       <Route path="/Alice" component={Alice} />
       <Route path="/MyComponent" component={MyComponent} />
+      <Route path="/addevent" component={AddEventForm} />
     </div>
   </Router>
-  </Provider>
+</Provider>
 )
-
-
-
 
 
 Routes.propTypes = {

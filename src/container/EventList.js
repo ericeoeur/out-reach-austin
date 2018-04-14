@@ -1,3 +1,9 @@
+/*
+Page where all events will go. 
+The container components pass data down to other React components.
+*/
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Events from './event_listing';

@@ -90,6 +90,7 @@ class NavBar extends React.Component {
                                 <ListItem><Link to="/todoList">Todo List</Link></ListItem>
                                 <ListItem><Link to="/posts">Posts</Link></ListItem>
                                 <ListItem><Link to="/Alice">Alice</Link></ListItem>
+                                <ListItem><Link to="/addevent">Add Event</Link></ListItem>
                             </List>
                         </div>
                         </Drawer>

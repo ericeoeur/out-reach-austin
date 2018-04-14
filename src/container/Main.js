@@ -1,3 +1,9 @@
+/*
+Main landing page for app. 
+The container components pass data down to other React components.
+*/
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 

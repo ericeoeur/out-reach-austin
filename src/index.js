@@ -13,7 +13,6 @@ import store from './store/configureStore';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //const store = configureStore(); 
 
-
 ReactDOM.render(
   <MuiThemeProvider><Routes store={store} /></MuiThemeProvider>,
   document.getElementById('root'));

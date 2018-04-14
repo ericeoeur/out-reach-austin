@@ -19,7 +19,6 @@ const rootReducer = combineReducers({
 //Export rootReducer to the Store
 export default rootReducer;
 
-
 // const rootReducer = combineReducers({
 //   todos,
 //   events: eventReducer,
