@@ -1,7 +1,7 @@
 /*
 
 //This is a component that pulls from an the SQL API and edits event information.
-
+The container components pass data down to other React components.
 */
 
 import React, { Component } from 'react'

@@ -1,5 +1,6 @@
 /*
 Simple Todo List component example to learn react redux. 
+The container components pass data down to other React components.
 */
 
 

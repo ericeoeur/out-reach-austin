@@ -1,5 +1,6 @@
 /*
 Page where all events will go. 
+The container components pass data down to other React components.
 */
 
 

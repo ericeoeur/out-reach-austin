@@ -1,5 +1,6 @@
 /*
 Component to display single event information. No information is being passed here (yet)
+The container components pass data down to other React components.
 */
 
 import React from 'react';

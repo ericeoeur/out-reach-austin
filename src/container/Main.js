@@ -1,5 +1,6 @@
 /*
 Main landing page for app. 
+The container components pass data down to other React components.
 */
 
 

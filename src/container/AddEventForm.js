@@ -1,21 +1,25 @@
 /*
 This is the Component that produces a form that allows you to add an event to the API. 
 //This is a component that pulls from an the SQL API and adds information about an event. 
+The container components pass data down to other React components.
 */
 
 //Import React and Component 
 import React, { Component } from 'react'
+import { database } from '../firebase'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as EventActions from '../actions/types';
+import _ from 'lodash'; 
 
 
 //Import Action fetchEvents from actions/eventActions.js 
 import { createEvent } from '../actions/eventActions';
 
 class AddEventForm extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -34,18 +38,73 @@ class AddEventForm extends Component {
         event_link: 'test',
         image_link: 'test'
       }
-    }
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    };
+    //Bind 
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onHandleSubmit = this.onHandleSubmit.bind(this);
+    // this.onChange = this.onChange.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
-  //set e.target value to be able to type into the form 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  //lifecycle method
+  //any changes that happen in the database use .on()
+  componentDidMount(){
+    database.on('value', snapshot => {
+      this.setState({
+        events: snapshot.val()
+      });
+    });
+
+  }
+
+  //render posts from firebase
+  renderPosts() {
+    return _.map(this.state.events, (event, key) => {
+      return (
+      <div key={key}>
+        <h2>{event.event_title}</h2>
+        <p>{event.start_date}</p>
+      
+      </div>
+      )
+    });
+  }
+
+
+  onInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
+
+
+  //set e.target value to be able to type into the form 
+  // onChange(e) {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
+
   //When console.logging this it works!!!
-  onSubmit(e) {
+  // onSubmit(e) {
+  //   e.preventDefault();
+  //   const newEvent = {
+  //     event_title: this.state.event_title,
+  //     start_date: this.state.start_date,
+  //     start_time1: this.state.start_time1,
+  //     end_time1: this.state.end_time1,
+  //     event_description_long: this.state.event_description_long,
+  //     event_location: this.state.location,
+  //     event_type: this.state.event_type,
+  //     event_cost: this.state.event_cost,
+  //     event_organizer: this.state.event_organizer,
+  //     event_link: this.state.event_link,
+  //     image_link: this.state.image_link
+  //   }
+  //   //call action here
+  //   this.props.createEvent(newEvent);
+  // }
+
+  onHandleSubmit(e) {
     e.preventDefault();
     const newEvent = {
       event_title: this.state.event_title,
@@ -53,63 +112,163 @@ class AddEventForm extends Component {
       start_time1: this.state.start_time1,
       end_time1: this.state.end_time1,
       event_description_long: this.state.event_description_long,
-      event_location: this.state.location,
+      event_location: this.state.event_location,
       event_type: this.state.event_type,
       event_cost: this.state.event_cost,
       event_organizer: this.state.event_organizer,
       event_link: this.state.event_link,
       image_link: this.state.image_link
-    }
-    //call action here
-    this.props.createEvent(newEvent);
+    };
+    //Need Method here below is the redux method
+    // database.createEvent(newEvent);
+
+    //Below is the non-redux version.
+    database.push(newEvent);
+    this.setState({
+      event_title: 'example event',
+      start_date: '030318',
+      start_time1: '500',
+      end_time1: '600',
+      event_description_long: 'This is a sample description',
+      event_location: 'test',
+      event_type: 'test',
+      event_cost: 'test',
+      event_organizer: 'test',
+      event_link: 'test',
+      image_link: 'test'
+
+    });
+
   }
+
 
   render() {
     console.log("this is the render for AddEventForm");
     return (
       <div>
-      <h1>
+        <h1>
           <Link to="/">Out-Reach-Austin: AddEvent</Link>
-      </h1>
+        </h1>
         <h2>Add your event here</h2>
         This is where the AddEventForm will go.
-      <form onSubmit={this.onSubmit}>
-          <div className = "AddEvent">
+      <form onSubmit={this.onHandleSubmit}>
+          <div className="AddEvent">
 
-            <label>Event Title:</label><br />
-            <input type="text" name="Event Title" onChange={this.onChange} value={this.props.event_title} />
-            <p>Start Date</p>
-            <input type="text" name="Event start_date" onChange={this.onChange} value={this.props.start_time1 }/>
-            <p>Start Time</p>
-            <input type="text" name="Event start_time1" onChange={this.onChange} value={this.props.start_date }/>
-            <p>End Time</p>
-            <input type="text" name="Event end_time1" onChange={this.onChange} value={this.props.end_time1 }/>
-            <p>Event Description</p>
-            <input type="text" name="Event event_description_long" onChange={this.onChange} value={this.props.event_description_long }/>
-            <p>Event Location</p>
-            <input type="text" name="Event event_location" onChange={this.onChange} value={this.props.event_location}/>
-            <p>Event Type</p>
-            <input type="text" name="Event event_type" onChange={this.onChange} value={this.props.event_type}/>
-            <p>Event cost</p>
-            <input type="text" name="Event event_cost" onChange={this.onChange} value={this.props.event_cost}/>
-            <p>Event Organizer</p>
-            <input type="text" name="Event event_organizer" onChange={this.onChange} value={this.props.event_organizer}/>
-            <p>Event Link</p>
-            <input type="text" name="Event event_link" onChange={this.onChange} value={this.props.event_link}/>
-            <p>Image</p>
-            <input type="text" name="Event image_link" onChange={this.onChange} value={this.props.image_link}/>
+            <form onSubmit={this.onHandleSubmit}>
+              <label>Event Title:</label><br />
+              <input
+                type="text"
+                name="event_title"
+                onChange={this.onInputChange}
+                ref="event_title"
+                value={this.state.event_title}
+              />
+
+              <p>Start Date</p>
+              <input
+                type="text"
+                name="start_date"
+                onChange={this.onInputChange}
+                ref="start_date"
+                value={this.state.start_date} />
+
+              <p>Start Time</p>
+              <input
+                type="text"
+                name="start_time1"
+                onChange={this.onInputChange}
+                ref="start_time1"
+                value={this.state.start_time1} />
+
+              <p>End Time</p>
+              <input
+                type="text"
+                name="end_time1"
+                onChange={this.onInputChange}
+                ref="end_time1"
+                value={this.state.end_time1}
+              />
+
+              <p>Event Description</p>
+              <input
+                type="text"
+                name="event_description_long"
+                onChange={this.onInputChange}
+                ref="event_description_long"
+                value={this.state.event_description_long}
+              />
+
+              <p>Event Location</p>
+              <input
+                type="text"
+                name="event_location"
+                onChange={this.onInputChange}
+                ref="event_location"
+                value={this.state.event_location}
+              />
+
+              <p>Event Type</p>
+              <input
+                type="text"
+                name="event_type"
+                onChange={this.onInputChange}
+                ref="event_type"
+                value={this.state.event_type}
+              />
+
+              <p>Event cost</p>
+              <input
+                type="text"
+                name="event_cost"
+                onChange={this.onInputChange}
+                ref="event_cost"
+                value={this.state.event_cost}
+              />
+
+              <p>Event Organizer</p>
+              <input
+                type="text"
+                name="event_organizer"
+                onChange={this.onInputChange}
+                ref="event_organizer"
+                value={this.state.event_organizer}
+              />
+
+              <p>Event Link</p>
+              <input
+                type="text"
+                name="event_link"
+                onChange={this.onInputChange}
+                ref="event_link"
+                value={this.state.event_link}
+              />
+
+              <p>Image</p>
+              <input
+                type="text"
+                name="image_link"
+                onChange={this.onInputChange}
+                ref="image_link"
+                value={this.state.image_link}
+              />
+            </form>
+
           </div>
           <br />
 
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit">Submit Event</button>
         </form>
+        <br />
+        {this.renderPosts()}
       </div>
     )
   }
 }
 
-//mapping items to the state to the post poerpty. 
+//mapping items to the state to the post property. 
+//Whenever a component wants to change the data stored within the store, 
+//it prepares an action object and dispatches the action object to the store.
 function mapDispachToProps(dispatch) {
   return {
     actions: bindActionCreators(EventActions, dispatch)

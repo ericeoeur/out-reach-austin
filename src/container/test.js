@@ -1,5 +1,6 @@
 /*
 Ignore this file, its for Eric's reference. 
+The container components pass data down to other React components.
 */
 
 

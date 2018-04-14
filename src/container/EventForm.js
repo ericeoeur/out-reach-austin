@@ -1,6 +1,7 @@
 /*
 This is the original edit form I was using. After seeing that I needed to break it up, it is now two different
 components-- AddEventform and EditEventForm. The code below is just used as reference and not in use currently. 
+The container components pass data down to other React components.
 */
 
 //This is a component that pulls from an the SQL API and adds information about an event. 
