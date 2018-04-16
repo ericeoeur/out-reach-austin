@@ -107,7 +107,7 @@ class AddEventForm extends Component {
       event_cost: this.state.event_cost,
       event_organizer: this.state.event_organizer,
       event_link: this.state.event_link,
-      image_link: this.state.avatarURL
+      image_link: this.state.image_link
     };
 
     //Need Method here below is the Firebase method, calling the createEvent Action
@@ -133,10 +133,14 @@ class AddEventForm extends Component {
   }
 
   setAvatarUrl(image) {
+<<<<<<< HEAD
     this.setState({
       avatarURL: image,
       image_link: image
     })
+=======
+    this.setState({avatarURL: image})
+>>>>>>> 6631186a1c64bb7e560e38f5375a99fcbcade9f0
   }
 
 
@@ -242,8 +246,13 @@ class AddEventForm extends Component {
               />
 
               <p>Image</p>
+<<<<<<< HEAD
               <ImageUpload
                 setAvatarUrl={this.setAvatarUrl}
+=======
+              <ImageUpload 
+                setAvatarUrl = {this.setAvatarUrl} 
+>>>>>>> 6631186a1c64bb7e560e38f5375a99fcbcade9f0
               />
 
               <input
