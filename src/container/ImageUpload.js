@@ -2,15 +2,6 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import FileUploader from 'react-firebase-file-uploader';
 
-//import base, {firebaseApp} from "../base";
-
-// firebase.initializeApp({
-//     apiKey: "AIzaSyBks8H9WEfUUZgsf2HJ8jTRoCZ3R4vq6eo",
-//     authDomain: "outreach-austin-db.firebaseapp.com",
-//     databaseURL: "https://outreach-austin-db.firebaseio.com",
-//     storageBucket: "outreach-austin-db.appspot.com"
-// });
-
 class ImageUpload extends Component {
     state = {
         isUploading: false,
@@ -28,14 +19,14 @@ class ImageUpload extends Component {
 
     handleUploadSuccess = (filename) => {
         this.setState({ avatar: filename, progress: 100, isUploading: false });
-        console.log(filename); 
+        console.log(filename);
         firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({ avatarURL: url }));
     };
-    
+
     render() {
         return (
             <div>
-                <form>               
+                
                     {this.state.isUploading &&
                         <p>Progress: {this.state.progress}</p>
                     }
@@ -52,7 +43,7 @@ class ImageUpload extends Component {
                         onUploadSuccess={this.handleUploadSuccess}
                         onProgress={this.handleProgress}
                     />
-                </form>
+                
             </div>
         );
     }

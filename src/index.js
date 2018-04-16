@@ -7,6 +7,7 @@ import EventList from './container/EventList';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'; 
 import store from './store/configureStore';
+import thunk from 'redux-thunk';
 
 //const store = configureStore(); 
 //import configureStore from './store/configureStore';

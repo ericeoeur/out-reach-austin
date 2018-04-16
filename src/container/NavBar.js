@@ -25,7 +25,7 @@ const paperStyle = {
 class NavBar extends React.Component {
     static propTypes = {
         classes: PropTypes.shape({
-            flex: PropTypes.string
+        flex: PropTypes.string
         })
     };
 

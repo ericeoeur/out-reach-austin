@@ -45,7 +45,7 @@ Posts.propTypes =  {
   newPost: PropTypes.object
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   posts: state.posts.items,
   newPost: state.posts.item
 });

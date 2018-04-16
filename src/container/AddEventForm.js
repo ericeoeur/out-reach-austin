@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as EventActions from '../actions/types';
-import _ from 'lodash'; 
+import _ from 'lodash';
 import ImageUpload from './ImageUpload';
 
 
@@ -20,7 +20,7 @@ import ImageUpload from './ImageUpload';
 import { createEvent } from '../actions/eventActions';
 
 class AddEventForm extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -38,7 +38,8 @@ class AddEventForm extends Component {
         event_organizer: 'test',
         event_link: 'test',
         image_link: 'test'
-      }
+      },
+      imageURL: null
     };
     //Bind 
     this.onInputChange = this.onInputChange.bind(this);
@@ -49,7 +50,8 @@ class AddEventForm extends Component {
 
   //lifecycle method
   //any changes that happen in the database use .on()
-  componentDidMount(){
+  componentDidMount() {
+    this.props.createEvent();
     database.on('value', snapshot => {
       this.setState({
         events: snapshot.val()
@@ -62,16 +64,22 @@ class AddEventForm extends Component {
   renderPosts() {
     return _.map(this.state.events, (event, key) => {
       return (
-      <div key={key}>
-        <h2>{event.event_title}</h2>
-        <p>{event.start_date}</p>
-      
-      </div>
+        <div key={key}>
+          <h2>{event.event_title}</h2>
+          <p>{event.start_date}</p>
+
+        </div>
       )
     });
   }
 
+  getAvatarURL = (avatarURL) => {
+    this.setState({ imageURL: avatarURL });
+  };
 
+
+
+  //set e.target value to be able to type into the form
   onInputChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -79,31 +87,11 @@ class AddEventForm extends Component {
   };
 
 
-
-  //set e.target value to be able to type into the form 
-  // onChange(e) {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
-
-  //When console.logging this it works!!!
-  // onSubmit(e) {
-  //   e.preventDefault();
-  //   const newEvent = {
-  //     event_title: this.state.event_title,
-  //     start_date: this.state.start_date,
-  //     start_time1: this.state.start_time1,
-  //     end_time1: this.state.end_time1,
-  //     event_description_long: this.state.event_description_long,
-  //     event_location: this.state.location,
-  //     event_type: this.state.event_type,
-  //     event_cost: this.state.event_cost,
-  //     event_organizer: this.state.event_organizer,
-  //     event_link: this.state.event_link,
-  //     image_link: this.state.image_link
-  //   }
-  //   //call action here
-  //   this.props.createEvent(newEvent);
-  // }
+  onImageUpload(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   onHandleSubmit(e) {
     e.preventDefault();
@@ -118,15 +106,16 @@ class AddEventForm extends Component {
       event_cost: this.state.event_cost,
       event_organizer: this.state.event_organizer,
       event_link: this.state.event_link,
-      image_link: this.state.avatarURL
+      image_link: this.state.image_link
     };
-    //Need Method here below is the redux method
-    // database.createEvent(newEvent);
+
+    //Need Method here below is the Firebase method, calling the createEvent Action
+    this.props.createEvent(newEvent);
 
     //Below is the non-redux version.
-    database.push(newEvent);
+    // database.push(newEvent);
     this.setState({
-      event_title: 'example event',
+      event_title: 'example',
       start_date: '030318',
       start_time1: '500',
       end_time1: '600',
@@ -245,10 +234,11 @@ class AddEventForm extends Component {
               />
 
               <p>Image</p>
-              <ImageUpload 
-                value={this.props.avatar}
+              <ImageUpload
+                getAvatarURL={this.state}
+                onChange={this.props.imageURL == this.state.avatarURL}
               />
-              
+
               <input
                 type="text"
                 name="image_link"
@@ -280,7 +270,7 @@ function mapDispachToProps(dispatch) {
   };
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   events: state.events.items
 });
 

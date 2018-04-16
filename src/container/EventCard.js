@@ -5,6 +5,8 @@ import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
+import { database } from '../firebase'; 
+import { deleteEvent } from '../actions/eventActions'
 
 
 const styles = {
@@ -29,6 +31,7 @@ const styles = {
 
 class EventCard extends React.Component {
    static propTypes = {
+     key: PropTypes.string, 
        title: PropTypes.string,
        date: PropTypes.string,
        time: PropTypes.string,
@@ -58,6 +61,7 @@ class EventCard extends React.Component {
         const bull = <span className={classes.bullet}>•</span>;
         return (
             <div>
+            <div>{this.props.children}</div>
             <Grid>
               <Card className={classes.card}>
                 <CardContent>
@@ -78,32 +82,16 @@ class EventCard extends React.Component {
                     {this.props.content}
                   </Typography>
                   </Grid>
-                  <Grid item>
-                  <Typography noWrap>
-                  <input value={this.props.title} onChange={e => this.setState({ event_title: e.target.value  })} />
-                  </Typography>
-                  </Grid>
-                  <Grid item>
-                  <Typography noWrap>
-                  <input value={this.props.date} onChange={e => this.setState({ start_date: e.target.value  })} />
-                  </Typography>
-                  </Grid>
-                  <Grid item>
-                  <Typography noWrap>
-                  <input value={this.props.time} onChange={e => this.setState({ start_time1: e.target.value  })} />
-                  </Typography>
-                  </Grid>
-                  <Grid item>
-                  <Typography noWrap>
-                  <input value={this.props.content} onChange={e => this.setState({event_description_long: e.target.value  })} />
-                  </Typography>
-                  </Grid>
+               
                   <CardActions>
                  <Grid item>
-                <h3>Edit Event Here</h3>
+              
                 </Grid><Grid item>
           
                   <Button size="small" onClick={this.addEvent} >Edit Event</Button>
+                
+
+               
                   </Grid>
                 </CardActions>
                 </CardContent>
@@ -117,3 +105,26 @@ class EventCard extends React.Component {
   
 
 export default withStyles(styles, {name:'EventCard'})(EventCard);
+
+
+//alice i put your grid items here for now to cut down on size
+// <Grid item>
+// <Typography noWrap>
+// <input value={this.props.title} onChange={e => this.setState({ event_title: e.target.value  })} />
+// </Typography>
+// </Grid>
+// <Grid item>
+// <Typography noWrap>
+// <input value={this.props.date} onChange={e => this.setState({ start_date: e.target.value  })} />
+// </Typography>
+// </Grid>
+// <Grid item>
+// <Typography noWrap>
+// <input value={this.props.time} onChange={e => this.setState({ start_time1: e.target.value  })} />
+// </Typography>
+// </Grid>
+// <Grid item>
+// <Typography noWrap>
+// <input value={this.props.content} onChange={e => this.setState({event_description_long: e.target.value  })} />
+// </Typography>
+// </Grid>

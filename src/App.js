@@ -27,6 +27,8 @@ import Alice from "./container/Alice";
 import MyComponent from './container/MyComponent';
 import AppBar from 'material-ui/AppBar';
 import AddEventForm from "./container/AddEventForm";
+import EventDetail from "./container/EventDetail";
+import NotFound from "./container/NotFound";
 
 
 //Set up your routes. Make sure your store is connected in your provider.
@@ -47,6 +49,10 @@ const Routes = ({store}) => (
       <Route path="/Alice" component={Alice} />
       <Route path="/MyComponent" component={MyComponent} />
       <Route path="/addevent" component={AddEventForm} />
+      <Route path="/events/:id" component={EventDetail} exact={true} />
+     
+
+
     </div>
   </Router>
 </Provider>

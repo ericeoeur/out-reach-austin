@@ -31,7 +31,7 @@ class TodoList extends Component {
 
 //({todos})=>({todos}) //or same as below
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     todos: state.todos
   };

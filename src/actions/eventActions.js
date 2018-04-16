@@ -7,29 +7,16 @@ then dispatched via Middleware: THUNK.
 // Import your Event Filters here
 import { FETCH_EVENTS, NEW_EVENT, EDIT_EVENT, DELETE_EVENT } from '../constants/EventFilters';
 import { database } from '../firebase'
-import _ from 'lodash'; 
+import _ from 'lodash';
 
 //Export a Function that pulls the data from the SQL API
 //When you get the data, dispatch it (Middleware: THUNK) to
 // container/event_listing.js 
 
-
-//This is the action that works with the fetch for SQL 
-// export const fetchEvents = () => dispatch => {
-//   console.log("fetching events (action: fetchEvent)");
-//       fetch('http://localhost:4000/events')
-//       .then(res => res.json())
-//       .then(events => 
-//         dispatch({
-//         type: FETCH_EVENTS,
-//         payload: events.data
-//       })
-//     ); 
-// };
-
 //This is the action that works with the fetch for FIREBASE 
 export const fetchEvents = () => dispatch => {
   console.log("fetching events FIREBASE (action: fetchEvent)");
+
   database.on('value', snapshot => {
     dispatch({
       type: FETCH_EVENTS,
@@ -38,77 +25,38 @@ export const fetchEvents = () => dispatch => {
   })
 };
 
-
-
-//Below is the action for SQL 
-// export const createEvent = (eventData) => dispatch => {
-//   console.log("fetching events (action: createEvent)");
-//       fetch(`http://localhost:4000/events/add?`, {
-//         method: 'POST',
-//         headers: {
-//           'content-type': 'application.json'
-//         },
-//         body: JSON.stringify(eventData)
-//       })
-//       .then(res => this.getEvents)
-//       .then(event => dispatch({
-//         type: NEW_EVENT,
-//         payload: event
-//       })
-//     ); 
-// };
-
-//Below is the action for FIREBASE 
+//Below is the createaction for FIREBASE 
 export const createEvent = (newEvent) => dispatch => {
   console.log("fetching events (action: createEvent)");
-   database.push(newEvent);
-
+  database.push(newEvent, snapshot => {
+    dispatch({
+      type: NEW_EVENT,
+      payload: newEvent
+    })
+  });
 };
 
-
-
-export const editEvent = (eventData) => dispatch => {
-  console.log("fetching events (action: editEvent)");
-      fetch(`http://localhost:4000/events/add?`, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application.json'
-        },
-        body: JSON.stringify(eventData)
-      })
-      .then(res => this.getEvents)
-      .then(event => dispatch({
-        type: EDIT_EVENT,
-        payload: event
-      })
-    ); 
+export const deleteEvent = (id) => dispatch => {
+  alert("Deleting your event was successful.");
+  console.log(id); //pass the id from the event and make sure it shows up
+  database.child(id).remove(); //removes the event
+  console.log("deleting event(action: deleteEvent)"); //makes myself feel that this is actually working/called on
 };
 
-export const deleteEvent = (eventData) => dispatch => {
-  console.log("fetching events (action: deleteEvent)");
-      fetch(`http://localhost:4000/events/add?`, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application.json'
-        },
-        body: JSON.stringify(eventData)
-      })
-      .then(res => this.getEvents)
-      .then(event => dispatch({
-        type: DELETE_EVENT,
-        payload: event
-      })
-    ); 
+// export const deleteEvent = (id) => dispatch => {
+//   console.log("deleting event(action: deleteEvent)"); 
+//   const deleteData = {};
+//   deleteData[id] = null;
+//   return database.child(id).update(deleteData);
+//   //return database.child(id).update(null); // this returns a promise
+//  };
+
+
+export const editEvent = (id, eventData) => dispatch => {
+  alert("Updating your event was successful.");
+  console.log(id);//when u come back check data passing
+  console.log(eventData);//this is passing data
+  console.log("editing event (action: editEvent)");
+  database.child(id).update(eventData);
+
 };
-
-
-
- // addEvent = _ => {
-  //   console.log("adding an event");
-  //   const { event } = this.state;
-  //   fetch(`http://localhost:4000/events/add?event_title=${event.event_title}&start_date=${event.start_date}&start_time1=${event.start_time1}&event_description_long=${event.event_description_long}`)
-  //     .then(res => this.getEvents)
-  //     .catch(err => console.log(err))
-  // }
-
-

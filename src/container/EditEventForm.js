@@ -97,7 +97,7 @@ function mapDispachToProps(dispatch) {
   };
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   events: state.events.items
 });
 
