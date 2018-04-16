@@ -7,6 +7,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Events from './event_listing';
 import ImageUpload from './ImageUpload'; 
+import nightmareChronicle from './nightmareChronicle'; 
 
 var createReactClass = require('create-react-class');
 
@@ -18,10 +19,10 @@ const SingleEvent = createReactClass({
     return (
       <div>
         <h1>
-          <Link to="/">Out-Reach-Austin: Event</Link>
+          <Link to="/">Out-Reach-Austin: Logged Out</Link>
         </h1>
-        <p>This is where the image upload will be (For now).</p>
-        <ImageUpload /> 
+        <p>You have logged out!</p>
+
       </div>
     )
   }

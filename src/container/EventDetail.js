@@ -1,3 +1,4 @@
+//Call for dependenices and components
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -23,6 +24,7 @@ class EventDetail extends Component {
         event_link: 'test',
         image_link: 'test'
       },
+      //set these variables to state, so they can push to database. 
       event_title: this.props.events.event_title,
       start_date: this.props.events.start_date,
       start_time1: this.props.events.start_time1,
@@ -35,18 +37,20 @@ class EventDetail extends Component {
       event_link: this.props.events.event_link,
       image_link: this.props.events.image_link
     }
+    //Binding your actions
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
-
   }
 
+  //Allows you to edit the text input when updating form. 
   onInputChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
+  //When you submit your event, it takes a copy of the items from state and places it in a varible to submit to the action
   onSubmit(e) {
     e.preventDefault();
     const editedEvent = { //when you get back, check if these variables are being filled properly. they are returning empty currently
@@ -62,9 +66,11 @@ class EventDetail extends Component {
       event_link: this.state.event_link,
       image_link: this.state.image_link
     }
-    //call action here
-    console.log(editedEvent);
-    this.props.editEvent(this.props.match.params.id, editedEvent);
+    //check if the editedEvent variable is holding data from state
+    console.log(editedEvent); 
+    //call redux action here -- send ID of event and the edited event array
+    this.props.editEvent(this.props.match.params.id, editedEvent); 
+
     this.setState({
       event_title: this.state.event_title,
       start_date: this.state.start_date,
@@ -77,16 +83,15 @@ class EventDetail extends Component {
       event_organizer: this.state.event_organizer,
       event_link: this.state.event_link,
       image_link: this.state.image_link
-
     });
   }
 
+  //On click event handler.
   onClick(e) {
-    alert("This event was successfully deleted.");
     e.preventDefault();
   }
 
-
+  //Rendering the information to page. 
   render() {
     console.log(this.props);
 
@@ -125,10 +130,11 @@ class EventDetail extends Component {
             <br />
             <button
               type="submit"
-              onClick={this.onSubmit}>Submit Edits</button>
+              onClick={this.onSubmit}>Submit Edits
+            </button>
+            
           </div>
           <br />
-
 
           <button
             className="btn btn-danger btn-xs"

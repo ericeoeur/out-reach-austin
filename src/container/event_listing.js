@@ -15,6 +15,7 @@ import EventCard from './EventCard';
 import { database } from '../firebase';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import { getUser } from '../actions/userAction';
 
 
 
@@ -58,6 +59,7 @@ class Events extends Component {
   componentDidMount() {
     console.log("this is fetchEvents mounting");
     this.props.fetchEvents(); //this doing the call for action from firebase
+    this.props.getUser(); 
   }
 
   //render posts maps over the data from firebase and displays it in divs
@@ -121,7 +123,8 @@ function mapDispachToProps(dispatch) {
 
 //mapping items to the state to the post poerpty. 
 const mapStateToProps = (state, ownProps) => ({
-  events: state.events.items
+  events: state.events.items,
+  user: state.user
 });
 
 Events.propTypes = {
@@ -131,4 +134,4 @@ Events.propTypes = {
 }
 
 //SUPER IMPORTANT!!!
-export default connect(mapStateToProps, { fetchEvents, deleteEvent })(Events);
+export default connect(mapStateToProps, { fetchEvents, deleteEvent, getUser })(Events);
