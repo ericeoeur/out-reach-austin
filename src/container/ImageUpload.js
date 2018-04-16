@@ -27,9 +27,10 @@ class ImageUpload extends Component {
     }
 
     handleUploadSuccess = (filename) => {
-        this.setState({ avatar: filename, progress: 100, isUploading: false });
-        console.log(filename); 
-        firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({ avatarURL: url }));
+        firebase.storage().ref('images').child(filename).getDownloadURL().then((url) => {
+            this.setState({ avatar: filename, progress: 100, isUploading: false, avatarURL: url });
+            this.props.setAvatarUrl(url);
+        });
     };
     
     render() {

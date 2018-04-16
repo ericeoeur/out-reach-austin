@@ -43,6 +43,7 @@ class AddEventForm extends Component {
     //Bind 
     this.onInputChange = this.onInputChange.bind(this);
     this.onHandleSubmit = this.onHandleSubmit.bind(this);
+    this.setAvatarUrl = this.setAvatarUrl.bind(this);
     // this.onChange = this.onChange.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
   }
@@ -118,7 +119,7 @@ class AddEventForm extends Component {
       event_cost: this.state.event_cost,
       event_organizer: this.state.event_organizer,
       event_link: this.state.event_link,
-      image_link: this.state.avatarURL
+      image_link: this.state.image_link
     };
     //Need Method here below is the redux method
     // database.createEvent(newEvent);
@@ -140,6 +141,10 @@ class AddEventForm extends Component {
 
     });
 
+  }
+
+  setAvatarUrl(image) {
+    this.setState({avatarURL: image})
   }
 
 
@@ -246,7 +251,7 @@ class AddEventForm extends Component {
 
               <p>Image</p>
               <ImageUpload 
-                value={this.props.avatar}
+                setAvatarUrl = {this.setAvatarUrl} 
               />
               
               <input
