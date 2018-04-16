@@ -133,14 +133,10 @@ class AddEventForm extends Component {
   }
 
   setAvatarUrl(image) {
-<<<<<<< HEAD
     this.setState({
       avatarURL: image,
       image_link: image
     })
-=======
-    this.setState({avatarURL: image})
->>>>>>> 6631186a1c64bb7e560e38f5375a99fcbcade9f0
   }
 
 
@@ -246,13 +242,8 @@ class AddEventForm extends Component {
               />
 
               <p>Image</p>
-<<<<<<< HEAD
-              <ImageUpload
-                setAvatarUrl={this.setAvatarUrl}
-=======
               <ImageUpload 
                 setAvatarUrl = {this.setAvatarUrl} 
->>>>>>> 6631186a1c64bb7e560e38f5375a99fcbcade9f0
               />
 
               <input
