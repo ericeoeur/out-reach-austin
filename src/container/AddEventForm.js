@@ -74,9 +74,6 @@ class AddEventForm extends Component {
     });
   }
 
-  getAvatarURL = (avatarURL) => {
-    this.setState({ imageURL: avatarURL });
-  };
 
 
 
@@ -132,12 +129,20 @@ class AddEventForm extends Component {
 
   }
 
-  setAvatarUrl(image) {
+  // grabbing the url and setting it to state
+
+  getAvatarURL = (avatarURL) => {
+    this.setState({ imageURL: avatarURL });
+  };
+
+
+setAvatarUrl = (image) => {
     this.setState({
       avatarURL: image,
       image_link: image
     })
   }
+  
 
 
   render() {

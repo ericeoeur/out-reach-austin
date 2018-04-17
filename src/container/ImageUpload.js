@@ -32,7 +32,7 @@ class ImageUpload extends Component {
                         <p>Progress: {this.state.progress}</p>
                     }
                     {this.state.avatarURL &&
-                        <img src={this.state.avatarURL} />
+                        <img src={this.state.avatarURL} height = '20%'width = '20%' />
                     }
                     <FileUploader
                         accept="image/*"
