@@ -70,29 +70,25 @@ class Events extends Component {
         <div key={key}
           style={{ paddingBottom: '8px', paddingLeft: '8px' }}>
 
-          <Link to={`/events/${key}`}>
+          
             <EventCard
               key={key}
+              id={key}
               title={event.event_title}
               date={event.start_date}
               time={event.start_time1}
-            // end_time1 = {event.end_time1}
-            //content={event.event_description_long}
-            // event_location = {event.event_location}
-            // event_type = {event.event_type}
-            // event_cost = {event.event_cost}
-            // event_organizer = {event.event_organizer}
-            // event_link = {event.event_link}
-            // image_link = {event.image_link}
+             end_time1 = {event.end_time1}
+            content={event.event_description_long}
+             event_location = {event.event_location}
+             event_type = {event.event_type}
+            event_cost = {event.event_cost}
+            event_organizer = {event.event_organizer}
+            event_link = {event.event_link}
+             image_link = {event.image_link}
             />
-          </Link>
+        
 
-          <button
-            className="btn btn-danger btn-xs"
-            size="small"
-            onClick={() => this.props.deleteEvent(key)}>
-            Delete {event.event_title}
-          </button>
+
 
 
         </div>

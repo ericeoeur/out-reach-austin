@@ -32,14 +32,12 @@ import NotFound from "./container/NotFound";
 
 
 //Set up your routes. Make sure your store is connected in your provider.
-
-
 const Routes = ({store}) => (
   <Provider store={store}>
   <Router>
   
     
-    <div>
+    <div style={{marginLeft:30}}  >
     <NavBar/>
       <Route exact path="/" component={Main} />
       <Route path="/event" component={SingleEvent} />

@@ -61,8 +61,7 @@ class NavBar extends React.Component {
 
 
         return (
-            <MuiThemeProvider theme={theme} >
-                <div>
+                <div style={{paddingBottom:70}}>
                     <AppBar>
                         <Toolbar>
                             <IconButton color="inherit" onClick={this.handleToggle} >
@@ -109,7 +108,6 @@ class NavBar extends React.Component {
                         </Drawer>
                     </div>
                 </div>
-            </MuiThemeProvider>
         );
     }
 }
