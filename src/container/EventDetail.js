@@ -6,6 +6,7 @@ import { deleteEvent } from '../actions/eventActions';
 import { editEvent } from '../actions/eventActions';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import ImageUpload from './ImageUpload';
 //import app from 'express';
 
 class EventDetail extends Component {
@@ -70,7 +71,6 @@ setAvatarUrl = (image) => {
   }
   
 
-
   //When you submit your event, it takes a copy of the items from state and places it in a varible to submit to the action
   onSubmit(e) {
     e.preventDefault();
@@ -133,10 +133,10 @@ setAvatarUrl = (image) => {
     console.log(this.props);
 
     return (<div>
-      <br /><br /><br /><br />
+      <br /><br /><br />
 
       <div>
-        <h1>Title:{this.props.events.event_title}</h1>
+        <h1>{this.props.events.event_title}</h1>
         <p>Date: {this.props.events.start_date}</p>
         <p>Time: {this.props.events.start_time1}</p>
         <p>End Time:{this.props.events.end_time1}</p>

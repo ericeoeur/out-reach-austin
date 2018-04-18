@@ -7,7 +7,6 @@ const preloadedState = [{
 }];
 
 export default function todos(state = preloadedState, action) {
-  console.log("todos is working and reducing");
   switch (action.type) {
   case ADD_TODO:
     

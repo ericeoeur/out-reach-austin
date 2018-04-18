@@ -17,8 +17,6 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { getUser } from '../actions/userAction';
 
-
-
 //Import Action fetchEvents from actions/eventActions.js 
 import { fetchEvents } from '../actions/eventActions';
 import { deleteEvent } from '../actions/eventActions';
@@ -26,12 +24,9 @@ import * as EventActions from '../actions/types';
 import EditEventForm from './EditEventForm';
 import _ from 'lodash';
 
-
 class Events extends Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
       events: [],
       event: {
@@ -59,38 +54,30 @@ class Events extends Component {
   componentDidMount() {
     console.log("this is fetchEvents mounting");
     this.props.fetchEvents(); //this doing the call for action from firebase
-    this.props.getUser(); 
+    this.props.getUser();
   }
 
-  //render posts maps over the data from firebase and displays it in divs
   //render posts maps over the data from firebase and displays it in divs
   renderPosts() {
     return _.map(this.props.events, (event, key) => {
       return (
         <div key={key}
           style={{ paddingBottom: '8px', paddingLeft: '8px' }}>
-
-          
-            <EventCard
-              key={key}
-              id={key}
-              title={event.event_title}
-              date={event.start_date}
-              time={event.start_time1}
-             end_time1 = {event.end_time1}
+          <EventCard
+            key={key}
+            id={key}
+            title={event.event_title}
+            date={event.start_date}
+            time={event.start_time1}
+            end_time1={event.end_time1}
             content={event.event_description_long}
-             event_location = {event.event_location}
-             event_type = {event.event_type}
-            event_cost = {event.event_cost}
-            event_organizer = {event.event_organizer}
-            event_link = {event.event_link}
-             image_link = {event.image_link}
-            />
-        
-
-
-
-
+            event_location={event.event_location}
+            event_type={event.event_type}
+            event_cost={event.event_cost}
+            event_organizer={event.event_organizer}
+            event_link={event.event_link}
+            image_link={event.image_link}
+          />
         </div>
       )
     });
@@ -106,8 +93,6 @@ class Events extends Component {
     </div>
     )
   }
-
-
 }
 
 

@@ -27,7 +27,7 @@ const paperStyle = {
 class NavBar extends React.Component {
     static propTypes = {
         classes: PropTypes.shape({
-            flex: PropTypes.string
+        flex: PropTypes.string
         })
     };
 
@@ -61,53 +61,53 @@ class NavBar extends React.Component {
 
 
         return (
-                <div style={{paddingBottom:70}}>
-                    <AppBar>
-                        <Toolbar>
-                            <IconButton color="inherit" onClick={this.handleToggle} >
-                                <FontAwesome name="bars" />
-                            </IconButton>
-                            <Typography type="title" color="inherit">
-                                Out-Reach Austin
+            <div style={{ paddingBottom: 70 }}>
+                <AppBar>
+                    <Toolbar>
+                        <IconButton color="inherit" onClick={this.handleToggle} >
+                            <FontAwesome name="bars" />
+                        </IconButton>
+                        <Typography type="title" color="inherit">
+                            Out-Reach Austin 
                             </Typography>
-                        </Toolbar>
-                    </AppBar>
-                    <div>
-                        <Drawer
-                            width={200}
-                            open={this.state.open}
-                            onClose={this.toggleDrawer(false)}
+                    </Toolbar>
+                </AppBar>
+                <div>
+                    <Drawer
+                        width={200}
+                        open={this.state.open}
+                        onClose={this.toggleDrawer(false)}
+                    >
+                        <div
+                            tabIndex={0}
+                            role="button"
+                            onClick={this.toggleDrawer(false)}
+                            onKeyDown={this.toggleDrawer(false)}
                         >
-                            <div
-                                tabIndex={0}
-                                role="button"
-                                onClick={this.toggleDrawer(false)}
-                                onKeyDown={this.toggleDrawer(false)}
-                            >
 
-                                <List>
-                                    {
+                            <List>
+                                {
                                     this.props.user === null ? (
-                                        <ListItem> 
-                                        <Link to="/"> Login </Link> 
+                                        <ListItem>
+                                            <Link to="/"> Login </Link>
                                         </ListItem>
                                     ) : (
-                                        <ListItem>
-                                            <Link to="/event" onClick={() => this.props.logout()} >Logout</Link>
-                                        </ListItem>)
-                                    }
-                                    <ListItem><Link to="/event" >Single Event</Link></ListItem>
-                                    <ListItem><Link to="/eventList">Event List</Link></ListItem>
-                                    <ListItem><Link to="/todoList">Todo List</Link></ListItem>
-                                    <ListItem><Link to="/posts">Posts</Link></ListItem>
-                                    <ListItem><Link to="/Alice">Alice</Link></ListItem>
-                                    <ListItem><Link to="/addevent">Add Event</Link></ListItem>
+                                            <ListItem>
+                                                <Link to="/event" onClick={() => this.props.logout()} >Logout</Link>
+                                            </ListItem>)
+                                }
+                                <ListItem><Link to="/event" >Single Event</Link></ListItem>
+                                <ListItem><Link to="/eventList">Event List</Link></ListItem>
+                                <ListItem><Link to="/todoList">Todo List</Link></ListItem>
+                                <ListItem><Link to="/posts">Posts</Link></ListItem>
+                                <ListItem><Link to="/Alice">Alice</Link></ListItem>
+                                <ListItem><Link to="/addevent">Add Event</Link></ListItem>
 
-                                </List>
-                            </div>
-                        </Drawer>
-                    </div>
+                            </List>
+                        </div>
+                    </Drawer>
                 </div>
+            </div>
         );
     }
 }

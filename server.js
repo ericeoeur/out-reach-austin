@@ -30,7 +30,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 
-
 const config = {
   apiKey: "AIzaSyBks8H9WEfUUZgsf2HJ8jTRoCZ3R4vq6eo",
   authDomain: "outreach-austin-db.firebaseapp.com",
@@ -87,7 +86,7 @@ app.post('/', function (req, res) {
         .type("#EventLocation", event_location)
         .type("#EventPubURL", event_link)
         .type("#EventMediaName", event_organizer)
-        .type("#EventMediaEmail", "vitemb@gmail.com")
+        .type("#EventMediaEmail", "test@gmail.com")
         .type("#EventMediaPhone", "817-992-5608")
         .type("#EventCost", event_cost)
         .type("#EventDescription", event_description_long)
@@ -99,11 +98,10 @@ app.post('/', function (req, res) {
         // .evaluate(function () {
         //   return document.querySelector("#links a").href;
         // })
-        //.end()
-
+        .end()
         .then(function (result) {
           console.log(result);
-          done();
+
         });
     } else {
       console.log("incorrect");

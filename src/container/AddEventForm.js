@@ -10,8 +10,8 @@ import { database } from '../firebase'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as EventActions from '../actions/types';
+//import { bindActionCreators } from 'redux';
+//import * as EventActions from '../actions/types';
 import _ from 'lodash';
 import ImageUpload from './ImageUpload';
 
@@ -276,11 +276,11 @@ setAvatarUrl = (image) => {
 //mapping items to the state to the post property. 
 //Whenever a component wants to change the data stored within the store, 
 //it prepares an action object and dispatches the action object to the store.
-function mapDispachToProps(dispatch) {
-  return {
-    actions: bindActionCreators(EventActions, dispatch)
-  };
-}
+// function mapDispachToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(EventActions, dispatch)
+//   };
+// }
 
 const mapStateToProps = (state, ownProps) => ({
   events: state.events.items

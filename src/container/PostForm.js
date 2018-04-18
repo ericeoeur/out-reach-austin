@@ -67,18 +67,18 @@ class PostForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    todos: state.todos
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     todos: state.todos
+//   };
+// }
 
-function mapDispachToProps(dispatch) {
-  return {
-    actions: bindActionCreators(EventActions, dispatch)
-  };
+// function mapDispachToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(EventActions, dispatch)
+//   };
 
-}
+// }
 
 PostForm.propTypes = {
   createPost: PropTypes.func.isRequired

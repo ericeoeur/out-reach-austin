@@ -7,11 +7,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TodoActions from '../actions/todos';
 
-import { fetchEvents } from '../actions/eventActions';
+//import { fetchEvents } from '../actions/eventActions';
 
-const events = {fetchEvents};
-console.log("does this work"); 
-console.log(events);
 
 class TodoList extends Component {
   render() {
