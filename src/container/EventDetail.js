@@ -5,12 +5,17 @@ import { connect } from 'react-redux';
 import { deleteEvent } from '../actions/eventActions';
 import { editEvent } from '../actions/eventActions';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+//import app from 'express';
 
 class EventDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
+      state:   {
+        response: ''
+      },
       event: {
         event_title: 'example event',
         start_date: '030318',
@@ -41,6 +46,7 @@ class EventDetail extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onClickChronicle = this.onClickChronicle.bind(this);
   }
 
   //Allows you to edit the text input when updating form. 
@@ -91,12 +97,29 @@ class EventDetail extends Component {
     e.preventDefault();
   }
 
+  //This is onClickEventw hen you click "Submit to Austin Chroncile" that the server should be called...
+  onClickChronicle(e) {
+    e.preventDefault();
+    //componentWillMount(); 
+    console.log("click chroncile action called");
+    console.log(this.props.match.params.id);
+
+      axios.post("http://localhost:5000/",{
+        incomingKey: this.props.match.params.id
+      }).then((response)=> {
+         console.log("Data submitted successfully");
+      }).catch((error)=> {
+         console.log("got errr while posting data", error);
+      });
+  }
+
   //Rendering the information to page. 
   render() {
     console.log(this.props);
 
     return (<div>
       <br /><br /><br /><br />
+
       <div>
         <h1>Title:{this.props.events.event_title}</h1>
         <p>Date: {this.props.events.start_date}</p>
@@ -110,6 +133,8 @@ class EventDetail extends Component {
         <p>Event Link: {this.props.events.event_link}</p>
         <p>Event Image: {this.props.events.image_link}</p >
       </div>
+
+      <p className="App-intro">{this.state.response}</p>
 
       <div>
         <form onSubmit={this.onSubmit}>
@@ -144,7 +169,7 @@ class EventDetail extends Component {
           </button>
 
           <button type="submit">Submit to Do512</button>
-          <button type="submit">Submit to Austin Chronicle</button>
+          <button type="submit" onClick={this.onClickChronicle} >Submit to Austin Chronicle</button>
           <button type="submit">Submit Austin 360</button>
           <button type="submit">Email Event Information</button>
 
