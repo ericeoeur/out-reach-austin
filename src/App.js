@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 //Import CSS and any Images
 import './App.css';
 import NavBar from './container/NavBar';
+import 'typeface-roboto'
 
 //Import components
 import TodoList from './container/todoList';
