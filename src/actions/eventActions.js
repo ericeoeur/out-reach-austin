@@ -37,6 +37,7 @@ export const createEvent = (newEvent) => dispatch => {
 };
 
 export const deleteEvent = (id) => dispatch => {
+
   alert("Deleting your event was successful.");
   console.log(id); //pass the id from the event and make sure it shows up
   database.child(id).remove(); //removes the event

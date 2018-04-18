@@ -6,7 +6,16 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import { database } from '../firebase'; 
-import { deleteEvent } from '../actions/eventActions'
+import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+//Import Action fetchEvents from actions/eventActions.js 
+import { fetchEvents } from '../actions/eventActions';
+import { deleteEvent } from '../actions/eventActions';
+import * as EventActions from '../actions/types';
+import EditEventForm from './EditEventForm';
+import _ from 'lodash';
+
+
 
 
 const styles = {
@@ -31,11 +40,20 @@ const styles = {
 
 class EventCard extends React.Component {
    static propTypes = {
-     key: PropTypes.string, 
+    onDelete: PropTypes.func,
+     key: PropTypes.string,
+     id: PropTypes.syring, 
        title: PropTypes.string,
        date: PropTypes.string,
        time: PropTypes.string,
        content:PropTypes.string,
+       end_time1: PropTypes.string,
+       event_location: PropTypes.string,
+       event_type: PropTypes.string,
+       event_cost: PropTypes.string,
+       event_organizer: PropTypes.string,
+       event_link: PropTypes.string,
+       image_link: PropTypes.string,
        classes : PropTypes.shape({ 
            card: PropTypes.string,
            bullet: PropTypes.string,
@@ -53,6 +71,12 @@ class EventCard extends React.Component {
        start_time1: '500',
        event_description_long: 'This is a sample description'
     }
+    this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
+   }
+   handleDeleteEvent(){
+console.log("Deleting event");
+this.props.onDelete(this.props.id);
+
    }
 
 
@@ -65,6 +89,7 @@ class EventCard extends React.Component {
             <Grid>
               <Card className={classes.card}>
                 <CardContent>
+
                 <Grid item>
                   <Typography className={classes.title}>
                     <h1>{this.props.title}</h1>
@@ -82,14 +107,19 @@ class EventCard extends React.Component {
                     {this.props.content}
                   </Typography>
                   </Grid>
-               
+
                   <CardActions>
+                    
                  <Grid item>
-              
-                </Grid><Grid item>
           
-                  <Button size="small" onClick={this.addEvent} >Edit Event</Button>
-                
+                  <Button size="small">
+                    <Link to={`/events/${this.props.id}`}>Edit Event</Link></Button>
+                  <button
+            size="small"
+            
+            onClick={this.handleDeleteEvent}>
+            Delete {this.props.title}
+          </button>
 
                
                   </Grid>
@@ -102,9 +132,10 @@ class EventCard extends React.Component {
           )  
     };
 }
-  
 
-export default withStyles(styles, {name:'EventCard'})(EventCard);
+
+
+export default (withStyles(styles, {name:'EventCard'})(EventCard));
 
 
 //alice i put your grid items here for now to cut down on size

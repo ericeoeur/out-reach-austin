@@ -8,13 +8,18 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'; 
 import store from './store/configureStore';
 import thunk from 'redux-thunk';
-
 //const store = configureStore(); 
 //import configureStore from './store/configureStore';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
+import createPalette from 'material-ui/styles/createPalette';
+import {blue, green} from 'material-ui/colors';
 //const store = configureStore(); 
-
+const theme = createMuiTheme({
+  palette: createPalette({
+    primary: blue,
+  }),
+});
 ReactDOM.render(
-  <MuiThemeProvider><Routes store={store} /></MuiThemeProvider>,
+  <MuiThemeProvider theme={theme}><Routes store={store} /></MuiThemeProvider>,
   document.getElementById('root'));
 registerServiceWorker();
