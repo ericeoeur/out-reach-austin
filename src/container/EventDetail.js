@@ -56,6 +56,21 @@ class EventDetail extends Component {
     });
   };
 
+//getting image link
+  getAvatarURL = (avatarURL) => {
+    this.setState({ imageURL: avatarURL });
+  };
+
+
+setAvatarUrl = (image) => {
+    this.setState({
+      avatarURL: image,
+      image_link: image
+    })
+  }
+  
+
+
   //When you submit your event, it takes a copy of the items from state and places it in a varible to submit to the action
   onSubmit(e) {
     e.preventDefault();
@@ -131,7 +146,8 @@ class EventDetail extends Component {
         <p>Event Cost: {this.props.events.event_cost}</p>
         <p>Event Organizer: {this.props.events.event_organizer}</p>
         <p>Event Link: {this.props.events.event_link}</p>
-        <p>Event Image: {this.props.events.image_link}</p >
+        {/* <p>Event Image: {this.props.events.image_link}</p > */}
+        <img src = {this.state.image_link} height = '20%'width = '20%' />
       </div>
 
       <p className="App-intro">{this.state.response}</p>
@@ -150,7 +166,9 @@ class EventDetail extends Component {
             <p>event_cost</p><input type="text" name="event_cost" onChange={this.onInputChange} defaultValue={this.props.events.event_cost} /><br />
             <p>event_organizer</p><input type="text" name="event_organizer" onChange={this.onInputChange} defaultValue={this.props.events.event_organizer} /><br />
             <p>event_link</p><input type="text" name="event_link" onChange={this.onInputChange} defaultValue={this.props.events.event_link} />
-            <p>image_link</p><input type="text" name="image_link" onChange={this.onInputChange} defaultValue={this.props.events.image_link} />
+            <p>image_link</p> <h>Edit Image</h>
+            <ImageUpload setAvatarUrl = {this.setAvatarUrl} 
+              /><input type="text" name="image_link" onChange={this.onInputChange} defaultValue={this.props.events.image_link} />
 
             <br />
             <button
