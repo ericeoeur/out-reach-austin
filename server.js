@@ -98,9 +98,11 @@ app.post('/', function (req, res) {
         // .evaluate(function () {
         //   return document.querySelector("#links a").href;
         // })
-        .end()
+        //.end()
         .then(function (result) {
           console.log(result);
+          incomingKey === "null";
+          return nightmare.end();
 
         });
     } else {

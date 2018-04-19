@@ -27,6 +27,7 @@ export const fetchEvents = () => dispatch => {
 
 //Below is the createaction for FIREBASE 
 export const createEvent = (newEvent) => dispatch => {
+
   console.log("fetching events (action: createEvent)");
   database.push(newEvent, snapshot => {
     dispatch({

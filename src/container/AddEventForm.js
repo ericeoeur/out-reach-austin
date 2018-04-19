@@ -109,6 +109,7 @@ class AddEventForm extends Component {
 
   onHandleSubmit(e) {
     e.preventDefault();
+    
     const newEvent = {
       event_title: this.state.event_title,
       start_date: this.state.start_date,
@@ -125,6 +126,7 @@ class AddEventForm extends Component {
 
     //Need Method here below is the Firebase method, calling the createEvent Action
     this.props.createEvent(newEvent);
+    alert("Adding your event was successful.");
 
     //Below is the non-redux version.
     // database.push(newEvent);
