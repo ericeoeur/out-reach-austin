@@ -15,10 +15,8 @@ const EventList = createReactClass({
     return (
       <div>
         <h1>
-          <Link to="/">Out-Reach-Austin: EventList</Link>
+          Upcoming Events
         </h1>
-        <p>This is where the event list will go, display all individual events.</p>
-        <p>The events below are pulling from the Out-Reach-Austin_DB:"</p>
       <Events />
       </div>
     )

@@ -11,7 +11,7 @@ import {
 
 export const fetchPosts = () => dispatch => {
 
-  console.log('fetching posts');
+  // console.log('fetching posts');
   fetch('http://jsonplaceholder.typicode.com/posts')
     .then(res => res.json())
     .then(posts =>
@@ -28,12 +28,12 @@ export const createPost = (postData) => dispatch => {
 
   console.log('create Post /fetching posts');
   fetch('http://jsonplaceholder.typicode.com/posts', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(postData)
-    })
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(postData)
+  })
     .then(res => res.json())
     .then(post => dispatch({
       type: NEW_POSTS,

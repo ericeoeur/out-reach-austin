@@ -7,8 +7,8 @@ import postReducer from './postReducer';
 import userReducer from './userReducer';
 
 //Console.log to check
-console.log(todos); 
-console.log(eventReducer);
+// console.log(todos); 
+// console.log(eventReducer);
 
 //Combine Reducers here 
 const rootReducer = combineReducers({

@@ -7,8 +7,6 @@ import thunk from 'redux-thunk';
 //import * as actionCreators from '../actions';
 import { fetchEvents } from '../actions/eventActions';
 
-const events = {fetchEvents};
-
 //Empty Initial State to fill 
 const initialState =  {
   

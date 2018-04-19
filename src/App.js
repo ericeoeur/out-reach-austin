@@ -24,7 +24,7 @@ import MyComponent from "./container/MyComponent";
 import AppBar from "material-ui/AppBar";
 import AddEventForm from "./container/AddEventForm";
 import EventDetail from "./container/EventDetail";
-import NotFound from "./container/NotFound";
+//import NotFound from "./container/NotFound";
 
 //Set up your routes. Make sure your store is connected in your provider.
 const Routes = ({ store }) => (

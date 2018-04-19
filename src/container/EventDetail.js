@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { deleteEvent } from '../actions/eventActions';
 import { editEvent } from '../actions/eventActions';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 import ImageUpload from './ImageUpload';
 import { withStyles } from "material-ui/styles";
 import MenuItem from "material-ui/Menu/MenuItem";
@@ -51,6 +52,9 @@ class EventDetail extends Component {
     super(props);
     this.state = {
       events: [],
+      state:   {
+        response: ''
+      },
       event: {
         event_title: 'example event',
         start_date: '030318',
@@ -81,6 +85,7 @@ class EventDetail extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onClickChronicle = this.onClickChronicle.bind(this);
   }
 
   //Allows you to edit the text input when updating form. 
@@ -103,7 +108,6 @@ setAvatarUrl = (image) => {
     })
   }
   
-
 
   //When you submit your event, it takes a copy of the items from state and places it in a varible to submit to the action
   onSubmit(e) {
@@ -144,6 +148,22 @@ setAvatarUrl = (image) => {
   //On click event handler.
   onClick(e) {
     e.preventDefault();
+  }
+
+  //This is onClickEventw hen you click "Submit to Austin Chroncile" that the server should be called...
+  onClickChronicle(e) {
+    e.preventDefault();
+    //componentWillMount(); 
+    console.log("click chroncile action called");
+    console.log(this.props.match.params.id);
+
+      axios.post("http://localhost:5000/",{
+        incomingKey: this.props.match.params.id
+      }).then((response)=> {
+         console.log("Data submitted successfully");
+      }).catch((error)=> {
+         console.log("got errr while posting data", error);
+      });
   }
 
   //Rendering the information to page. 
@@ -305,9 +325,8 @@ setAvatarUrl = (image) => {
             Delete Event (uhhh... this works but it throws you an error bc the item doesnt exist anymore. halp me reroute this!!)
           </Button>
 
-          <Button className={classes.button2} type="submit">Submit to Do512</Button>
-          <Button className={classes.button3} type="submit">Submit to Austin Chronicle</Button>
-          <Button className={classes.button4} type="submit">Submit Austin 360</Button>
+          
+          <Button className={classes.button3} onClick={this.onClickChronicle} type="submit">Submit to Austin Chronicle</Button>
           <Button className={classes.button} type="submit">Email Event Information</Button>
 
         </form>
