@@ -19,6 +19,9 @@ import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 import { RaisedButton } from "material-ui";
+import Card, { CardHeader, CardMedia, CardTitle, CardActions, CardContent, CardText } from 'material-ui/Card';
+import Grid from 'material-ui/Grid';
+
 
 
 
@@ -159,14 +162,28 @@ class AddEventForm extends Component {
     return (
       <div>
         <h1>
-          <Link to="/">Out-Reach-Austin: AddEvent</Link>
+          <Link to="/">Home</Link>
         </h1>
-        <h2>Add Your Event Here</h2>
        
-        <form onSubmit={this.onHandleSubmit}>
+
+       <Card style={{margin: 20 }}>
+
+            <CardHeader
+              title={"Add Your Event Here"}
+              style={{
+                backgroundColor: '#E3F2FD',
+                height: '50px'
+
+              }}
+              
+            />
+        <form onSubmit={this.onHandleSubmit} style={{padding: 20 }}>
           <div className="AddEvent">
             <form onSubmit={this.onHandleSubmit}>
+            <Grid container spacing={24}>
+            <Grid item xs={12} sm={6}>
               <TextField
+                fullWidth="true"
                 id="search"
                 label="Event Title"
                 type="search"
@@ -176,9 +193,10 @@ class AddEventForm extends Component {
                 ref="event_title"
                 value={this.state.event_title}
               />
-
-              <br />
+              </Grid>
+              <Grid item xs={12} sm={6}>
               <TextField
+                fullWidth="true"
                 id="search"
                 label="Start Date"
                 type="search"
@@ -189,10 +207,12 @@ class AddEventForm extends Component {
                 ref="start_date"
                 value={this.state.start_date}
               />
-              <br />
+              </Grid>
+              <Grid item xs={12} sm={6}>
 
               <TextField
                 id="search"
+                fullWidth="true"
                 label="Start Time"
                 type="search"
                 margin="normal"
@@ -202,10 +222,11 @@ class AddEventForm extends Component {
                 ref="start_time1"
                 value={this.state.start_time1}
               />
-              <br />
-
+               </Grid>
+              <Grid item xs={12} sm={6}>
               <TextField
                 id="search"
+                fullWidth="true"
                 label="End Time"
                 type="search"
                 margin="normal"
@@ -215,11 +236,12 @@ class AddEventForm extends Component {
                 ref="end_time1"
                 value={this.state.end_time1}
               />
-              <br />
-
+               </Grid>
+              <Grid item xs={12} sm={6}>
               <TextField
                 id="search"
-                label="Event Subscription"
+                fullWidth="true"
+                label="Event Description"
                 type="search"
                 margin="normal"
                 type="text"
@@ -228,10 +250,11 @@ class AddEventForm extends Component {
                 ref="event_description_long"
                 value={this.state.event_description_long}
               />
-              <br />
-
+               </Grid>
+              <Grid item xs={12} sm={6}>
               <TextField
                 id="search"
+                fullWidth="true"
                 label="Event Location"
                 type="search"
                 margin="normal"
@@ -241,10 +264,12 @@ class AddEventForm extends Component {
                 ref="event_location"
                 value={this.state.event_location}
               />
-              <br />
+               </Grid>
+              <Grid item xs={12} sm={6}>
 
               <TextField
                 id="search"
+                fullWidth="true"
                 label="Event Type"
                 type="search"
                 margin="normal"
@@ -254,10 +279,12 @@ class AddEventForm extends Component {
                 ref="event_type"
                 value={this.state.event_type}
               />
-              <br />
+               </Grid>
+              <Grid item xs={12} sm={6}>
 
               <TextField
                 id="search"
+                fullWidth="true"
                 label="Event Cost"
                 type="search"
                 margin="normal"
@@ -267,10 +294,12 @@ class AddEventForm extends Component {
                 ref="event_cost"
                 value={this.state.event_cost}
               />
-              <br />
+               </Grid>
+              <Grid item xs={12} sm={6}>
 
               <TextField
                 id="search"
+                fullWidth="true"
                 label="Event Organizer"
                 type="search"
                 margin="normal"
@@ -280,10 +309,12 @@ class AddEventForm extends Component {
                 ref="event_organizer"
                 value={this.state.event_organizer}
               />
-              <br />
+               </Grid>
+              <Grid item xs={12} sm={6}>
 
               <TextField
                 id="search"
+                fullWidth="true"
                 label="Event Link"
                 type="search"
                 margin="normal"
@@ -293,7 +324,9 @@ class AddEventForm extends Component {
                 ref="event_link"
                 value={this.state.event_link}
               />
-              <br />
+               </Grid>
+               
+              <Grid item xs={12} sm={6}>
 
               <p>Image</p>
               <Button variant="raised" color="blue">
@@ -311,7 +344,10 @@ class AddEventForm extends Component {
                 ref="image_link"
                 value={this.state.avatarURL}
               />
+              </Grid>
+              </Grid>
             </form>
+            
           </div>
           <br />
 
@@ -321,6 +357,7 @@ class AddEventForm extends Component {
           </Button>
           
         </form>
+        </Card>
         <br />
         {/* {this.renderPosts()} */}
       </div>

@@ -177,30 +177,26 @@ setAvatarUrl = (image) => {
 <Typography>
       <Grid container spacing={24}>
       
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>
-          <div>
-        <h1>Title:{this.props.events.event_title}</h1>
-        <p>Date: {this.props.events.start_date}</p>
-        <p>Time: {this.props.events.start_time1}</p>
-        <p>End Time:{this.props.events.end_time1}</p>
-        <p>Description: {this.props.events.event_description_long}</p>
-        <p>Event Location: {this.props.events.event_location}</p>
-        <p>Event Type: {this.props.events.event_type}</p>
-        <p>Event Cost: {this.props.events.event_cost}</p>
-        <p>Event Organizer: {this.props.events.event_organizer}</p>
-        <p>Event Link: {this.props.events.event_link}</p>
-        {/* <p>Event Image: {this.props.events.image_link}</p > */}
-        <img src = {this.state.image_link} height = '20%'width = '20%' />
-      </div>
-
-          </Paper>
-        </Grid>
+      <Grid item xs={12} sm={6}>
+              <Paper className={classes.paper}>
+                <div style={{ margin: '15px', padding: '15px' }}>
+                  <img src={this.state.image_link} width='40%' />
+                  <h1>{this.props.events.event_title}</h1>
+                  <p> <strong>{this.props.events.start_date}<br />  {this.props.events.start_time1}-{this.props.events.end_time1}</strong></p>
+                  <p>{this.props.events.event_description_long}</p>
+                  <p><b>Event Location</b> <br />{this.props.events.event_location}</p>
+                  <p><b>Event Type</b> <br />{this.props.events.event_type}</p>
+                  <p><b>Event Cost </b><br />{this.props.events.event_cost}</p>
+                  <p><b>Event Organizer(s)</b> <br />{this.props.events.event_organizer}</p>
+                  <p><a href={this.props.events.event_link}>More Information</a></p>
+                </div>
+              </Paper>
+            </Grid>
       
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
           <form onSubmit={this.onSubmit}>
-          <div>
+          <div style={{ margin: '15px', padding: '15px' }}>
             <label><h1>Event Editor:</h1></label><br />
             <TextField
                 fullWidth="true"                
@@ -214,6 +210,7 @@ setAvatarUrl = (image) => {
 
              <TextField
                 id="search"
+                fullWidth="true" 
                 label="Start Date"
                 type="search"
                 name="start_date" 
@@ -223,6 +220,7 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
+                fullWidth="true" 
                 label="Start Time"
                 type="search"
                 name="start_time1" 
@@ -232,6 +230,7 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
+                fullWidth="true" 
                 label="End Time"
                 type="search"
                 name="end_time1"
@@ -241,6 +240,7 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
+                fullWidth="true"
                 label="Event Description"
                 type="search"
                 name="event_description_long" 
@@ -250,6 +250,7 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
+                fullWidth="true" 
                 label="Event Location"
                 type="search"
                 name="event_location"
@@ -259,6 +260,7 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
+                fullWidth="true" 
                 label="Event Type"
                 type="search"
                 name="event_type"
@@ -268,6 +270,7 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
+                fullWidth="true" 
                 label="Event Cost"
                 type="search"
                 name="event_cost"
@@ -277,6 +280,7 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
+                fullWidth="true" 
                 label="Event Organizer"
                 type="search"
                 name="event_organizer" 
@@ -286,7 +290,8 @@ setAvatarUrl = (image) => {
 
               <TextField
                 id="search"
-                label="Event Organizer"
+                fullWidth="true" 
+                label="Event Link"
                 type="search"
                 name="event_link"
                 onChange={this.onInputChange}
@@ -307,7 +312,7 @@ setAvatarUrl = (image) => {
                 name="image_link"
                 onChange={this.onInputChange}
                 defaultValue={this.props.events.image_link}
-              />
+              /><br />
 
             <br />
             <Button
@@ -316,7 +321,7 @@ setAvatarUrl = (image) => {
               onClick={this.onSubmit}>Submit Edits
             </Button>
             
-          </div>
+            <br />
           <br />
 
       
@@ -328,6 +333,7 @@ setAvatarUrl = (image) => {
           <Button className={classes.button3}  type="submit"><a href="mailto:someone@example.com?Subject=Hello%20there!" target="_top">Email Event Information</a></Button>
           </Grid>
       </Grid>
+      </div>
         </form>
           
           </Paper>
