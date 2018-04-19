@@ -6,9 +6,47 @@ import { deleteEvent } from '../actions/eventActions';
 import { editEvent } from '../actions/eventActions';
 import { Redirect } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
+import { withStyles } from "material-ui/styles";
+import MenuItem from "material-ui/Menu/MenuItem";
+import TextField from "material-ui/TextField";
+import Button from "material-ui/Button";
+import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
+import PropTypes from "prop-types";
+import 'typeface-roboto';
+import { Typography } from 'material-ui';
 
-
+const styles = {
+  paper: {
+    textAlign: 'center'
+ },
+ button: {
+  backgroundColor: "#2196f3",
+  color: "white"
+},
+button1: {
+  backgroundColor: "#039BE5",
+  color: "white"
+},
+button2: {
+  backgroundColor: "#0288D1",
+  color: "white"
+},
+button3: {
+  backgroundColor: "#0277BD",
+  color: "white"
+},
+button4: {
+  backgroundColor: "#01579B",
+  color: "white"
+}
+}
 class EventDetail extends Component {
+  static propTypes = {
+    classes: PropTypes.shape({
+      paper: PropTypes.string
+    })
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -110,11 +148,18 @@ setAvatarUrl = (image) => {
 
   //Rendering the information to page. 
   render() {
+    const classes = this.props.classes;
     console.log(this.props);
 
     return (<div>
       <br /><br /><br /><br />
-      <div>
+
+<Typography>
+      <Grid container spacing={24}>
+      
+        <Grid item xs={12} sm={6}>
+          <Paper className={classes.paper}>
+          <div>
         <h1>Title:{this.props.events.event_title}</h1>
         <p>Date: {this.props.events.start_date}</p>
         <p>Time: {this.props.events.start_time1}</p>
@@ -129,51 +174,157 @@ setAvatarUrl = (image) => {
         <img src = {this.state.image_link} height = '20%'width = '20%' />
       </div>
 
-      <div>
-        <form onSubmit={this.onSubmit}>
+          </Paper>
+        </Grid>
+      
+        <Grid item xs={12} sm={6}>
+          <Paper className={classes.paper}>
+          <form onSubmit={this.onSubmit}>
           <div>
-            <label>Event Editor:</label><br />
-            <p>Title</p><input type="text" name="event_title" onChange={this.onInputChange} defaultValue={this.props.events.event_title} /> <br />
-            <p>start_date</p><input type="text" name="start_date" onChange={this.onInputChange} defaultValue={this.props.events.start_time1} /><br />
-            <p>start_time1</p><input type="text" name="start_time1" onChange={this.onInputChange} defaultValue={this.props.events.start_date} /><br />
-            <p>end_time1</p><input type="text" name="end_time1" onChange={this.onInputChange} defaultValue={this.props.events.end_time1} /><br />
-            <p>event_description_long</p><input type="text" name="event_description_long" onChange={this.onInputChange} defaultValue={this.props.events.event_description_long} /><br />
-            <p>event_location</p><input type="text" name="event_location" onChange={this.onInputChange} defaultValue={this.props.events.event_location} /><br />
-            <p>event_type</p><input type="text" name="event_type" onChange={this.onInputChange} defaultValue={this.props.events.event_type} /><br />
-            <p>event_cost</p><input type="text" name="event_cost" onChange={this.onInputChange} defaultValue={this.props.events.event_cost} /><br />
-            <p>event_organizer</p><input type="text" name="event_organizer" onChange={this.onInputChange} defaultValue={this.props.events.event_organizer} /><br />
-            <p>event_link</p><input type="text" name="event_link" onChange={this.onInputChange} defaultValue={this.props.events.event_link} />
-            <p>image_link</p> <h>Edit Image</h>
-            <ImageUpload setAvatarUrl = {this.setAvatarUrl} 
-              /><input type="text" name="image_link" onChange={this.onInputChange} defaultValue={this.props.events.image_link} />
+            <label><h1>Event Editor:</h1></label><br />
+            <TextField
+                id="search"
+                label="Title"
+                type="search"
+                name="event_title" 
+                onChange={this.onInputChange} 
+                defaultValue={this.props.events.event_title}
+              /><br/>
+
+             <TextField
+                id="search"
+                label="Start Date"
+                type="search"
+                name="start_date" 
+                onChange={this.onInputChange} 
+                defaultValue={this.props.events.start_time1}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="Start Time"
+                type="search"
+                name="start_time1" 
+                onChange={this.onInputChange} 
+                defaultValue={this.props.events.start_date}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="End Time"
+                type="search"
+                name="end_time1"
+                onChange={this.onInputChange}
+                defaultValue={this.props.events.end_time1}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="Event Description"
+                type="search"
+                name="event_description_long" 
+                onChange={this.onInputChange} 
+                defaultValue={this.props.events.event_description_long}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="Event Location"
+                type="search"
+                name="event_location"
+                onChange={this.onInputChange}
+                defaultValue={this.props.events.event_location}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="Event Type"
+                type="search"
+                name="event_type"
+                onChange={this.onInputChange}
+                defaultValue={this.props.events.event_type}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="Event Cost"
+                type="search"
+                name="event_cost"
+                onChange={this.onInputChange}
+                defaultValue={this.props.events.event_cost}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="Event Organizer"
+                type="search"
+                name="event_organizer" 
+                onChange={this.onInputChange}
+                defaultValue={this.props.events.event_organizer}
+              /><br/>
+
+              <TextField
+                id="search"
+                label="Event Organizer"
+                type="search"
+                name="event_link"
+                onChange={this.onInputChange}
+                defaultValue={this.props.events.event_link}
+              /><br/>
+            
+            <p>Edit Image</p>
+              <Button variant="raised" color="blue">
+                <ImageUpload setAvatarUrl={this.setAvatarUrl} />
+              </Button>
+
+              <TextField
+                id="search"
+                label="Image Link"
+                type="search"
+                margin="normal"
+                type="text"
+                name="image_link"
+                onChange={this.onInputChange}
+                defaultValue={this.props.events.image_link}
+              />
 
             <br />
-            <button
+            <Button
               type="submit"
+              className={classes.button}
               onClick={this.onSubmit}>Submit Edits
-            </button>
+            </Button>
             
           </div>
           <br />
 
-          <button
-            className="btn btn-danger btn-xs"
-            size="small"
+          <Button
+            type="submit"
+            
             onClick={() => this.props.deleteEvent(this.props.match.params.id)}>
             Delete Event (uhhh... this works but it throws you an error bc the item doesnt exist anymore. halp me reroute this!!)
-          </button>
+          </Button>
 
-          <button type="submit">Submit to Do512</button>
-          <button type="submit">Submit to Austin Chronicle</button>
-          <button type="submit">Submit Austin 360</button>
-          <button type="submit">Email Event Information</button>
+          <Button className={classes.button2} type="submit">Submit to Do512</Button>
+          <Button className={classes.button3} type="submit">Submit to Austin Chronicle</Button>
+          <Button className={classes.button4} type="submit">Submit Austin 360</Button>
+          <Button className={classes.button} type="submit">Email Event Information</Button>
 
         </form>
+          
+          </Paper>
+        </Grid>
+        
+      </Grid>
+
+     
+      <div>
+        
       </div>
       <div>
         <Link to="/">Back to Main Page</Link>
       </div>
-
+      </Typography>
     </div>
     )
   }
@@ -186,4 +337,4 @@ function mapStateToProps(state, ownProps) {
 }
 
 
-export default connect(mapStateToProps, { deleteEvent, editEvent })(EventDetail);
+export default connect(mapStateToProps, { deleteEvent, editEvent })(withStyles(styles)(EventDetail));
