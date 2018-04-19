@@ -132,7 +132,7 @@ class EventCard extends React.Component {
                 <Grid item>
                   <Button size="small">
                     <Link to={`/events/${this.props.id}`}>Edit Event</Link></Button>
-                  <button size="small" onClick={this.handleDeleteEvent}>
+                  <button size="small" onClick={deleteEvent(this.props.id)}>
                     Delete {this.props.title}
                   </button>
                 </Grid>

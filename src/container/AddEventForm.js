@@ -20,6 +20,8 @@ import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 import { RaisedButton } from "material-ui";
 
+
+
 //Import Action fetchEvents from actions/eventActions.js
 import { createEvent } from "../actions/eventActions";
 
@@ -159,8 +161,8 @@ class AddEventForm extends Component {
         <h1>
           <Link to="/">Out-Reach-Austin: AddEvent</Link>
         </h1>
-        <h2>Add your event here</h2>
-        This is where the AddEventForm will go.
+        <h2>Add Your Event Here</h2>
+       
         <form onSubmit={this.onHandleSubmit}>
           <div className="AddEvent">
             <form onSubmit={this.onHandleSubmit}>
@@ -317,9 +319,10 @@ class AddEventForm extends Component {
           <Button type="submit" className={classes.button}>
             Submit Event
           </Button>
+          
         </form>
         <br />
-        {this.renderPosts()}
+        {/* {this.renderPosts()} */}
       </div>
     );
   }
