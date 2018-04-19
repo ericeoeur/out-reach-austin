@@ -203,6 +203,7 @@ setAvatarUrl = (image) => {
           <div>
             <label><h1>Event Editor:</h1></label><br />
             <TextField
+                fullWidth="true"                
                 id="search"
                 label="Title"
                 type="search"
@@ -318,17 +319,15 @@ setAvatarUrl = (image) => {
           </div>
           <br />
 
-          <Button
-            type="submit"
-            
-            onClick={() => this.props.deleteEvent(this.props.match.params.id)}>
-            Delete Event (uhhh... this works but it throws you an error bc the item doesnt exist anymore. halp me reroute this!!)
-          </Button>
-
-          
+      
+      <Grid container spacing={24}>
+      <Grid item xs={12} sm={6}>
           <Button className={classes.button3} onClick={this.onClickChronicle} type="submit">Submit to Austin Chronicle</Button>
-          <Button className={classes.button} type="submit">Email Event Information</Button>
-
+      </Grid>
+      <Grid item xs={12} sm={6}>   
+          <Button className={classes.button3}  type="submit"><a href="mailto:someone@example.com?Subject=Hello%20there!" target="_top">Email Event Information</a></Button>
+          </Grid>
+      </Grid>
         </form>
           
           </Paper>

@@ -23,7 +23,8 @@ const styles = {
     margin: 'auto'
   },
   CardHeader: {
-    fontSize: 8,
+    fontSize: '5em'
+
   },
   bullet: {
     display: 'inline-block',
@@ -32,7 +33,7 @@ const styles = {
   },
   title: {
     marginBottom: 16,
-    fontSize: 14,
+    
   },
   pos: {
     marginBottom: 12,
@@ -59,7 +60,8 @@ class EventCard extends React.Component {
       card: PropTypes.string,
       bullet: PropTypes.string,
       title: PropTypes.string,
-      pos: PropTypes.string
+      pos: PropTypes.string,
+      CardHeader: PropTypes.string
     })
   }
   constructor(props) {
@@ -88,30 +90,41 @@ class EventCard extends React.Component {
         <div>{this.props.children}</div>
 
         <Grid>
-          <Card className={classes.card}>
-            <CardHeader
+          <Card 
+          className={classes.card}
+          
+          >
+          
+          <CardHeader
               title={this.props.event_location}
               subtitle={this.props.event_location}
               style={{
-                border: '1px solid #0D47A1',
                 backgroundColor: '#E3F2FD',
-                height: '10px',
-                'font-size': '1.0rem',
-              }}
+                height: '50px'
 
+              }}
+              
             />
-            <div>
+           
+{/* /Grid system for 2 columns start/  */}
+           <Grid container spacing={24}>
+           <Grid item xs={12} sm={6}>
+           <div style={{ padding: 20 }}>
             <CardMedia
               overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}>
-              <img src={this.props.image_link} alt="test" object-fit="cover" width="40%" height="40%" />
+              <img src={this.props.image_link} alt="test" object-fit="cover" width="100%" />
               
               </CardMedia>
               </div>
+              </Grid> 
+              <Grid item xs={12} sm={6}> 
             <CardContent>
 
               <Grid item>
                 <Typography className={classes.title}>
+                <div style={{  lineHeight: 1.2 }}>
                   <h1>{this.props.title}</h1>
+                </div>  
                 </Typography>
               </Grid>
 
@@ -132,13 +145,18 @@ class EventCard extends React.Component {
                 <Grid item>
                   <Button size="small">
                     <Link to={`/events/${this.props.id}`}>Edit Event</Link></Button>
-                  <button size="small" onClick={deleteEvent(this.props.id)}>
-                    Delete {this.props.title}
-                  </button>
+                  <Button size="small" onClick={deleteEvent(this.props.id)}>
+                    Delete
+                  </Button>
                 </Grid>
               </CardActions>
 
             </CardContent>
+            </Grid>
+          </Grid>
+{/* /Grid system for 2 columns finish/  */}
+
+
           </Card>
         </Grid>
       </div>
