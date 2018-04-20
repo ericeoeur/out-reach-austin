@@ -215,7 +215,8 @@ setAvatarUrl = (image) => {
                 type="search"
                 name="start_date" 
                 onChange={this.onInputChange} 
-                defaultValue={this.props.events.start_time1}
+                defaultValue={this.props.events.start_date}
+               
               /><br/>
 
               <TextField
@@ -225,7 +226,7 @@ setAvatarUrl = (image) => {
                 type="search"
                 name="start_time1" 
                 onChange={this.onInputChange} 
-                defaultValue={this.props.events.start_date}
+                defaultValue={this.props.events.start_time1}
               /><br/>
 
               <TextField

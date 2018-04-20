@@ -64,6 +64,7 @@ app.post('/', function (req, res) {
     console.log("Incoming Key is " + incomingKey);
     console.log("Regular Key is " + key);
 
+    if (incomingKey) {
     let end_time1 = snapshot.child(incomingKey).val().end_time1;
     let event_cost = snapshot.child(incomingKey).val().event_cost;
     let event_description_long = snapshot.child(incomingKey).val().event_description_long;
@@ -77,7 +78,9 @@ app.post('/', function (req, res) {
     let start_time1 = snapshot.child(incomingKey).val().start_time1;
 
     //Insert your key from the React EventDetail.js file where "-LAL459TtE_gpBLN7H95" is below
-    if (incomingKey) {
+    for (i=0; i<1; i++) {
+      console.log("thisi s your for loop: " + i);
+      if (incomingKey) {
       console.log("correct");
       Nightmare({ show: true })
         .goto("https://www.austinchronicle.com/event-submission/")
@@ -100,15 +103,17 @@ app.post('/', function (req, res) {
         // })
         //.end()
         .then(function (result) {
-          console.log(result);
-          incomingKey === "null";
+          console.log("This is the result" + result);
+          incomingKey = null;
+          console.log("this is the new incoming key" + incomingKey);
           return nightmare.end();
 
         });
     } else {
       console.log("incorrect");
     }
-
+  };
+};
 
   })
 
