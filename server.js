@@ -40,9 +40,11 @@ const config = {
 };
 firebase.initializeApp(config);
 
+// serve static files for production
+app.use('/', express.static(`${__dirname}/client / build`));
 
 // Grab the incoming key from EventDetail.js... i hope this works
-app.post('/', function (req, res) {
+app.post('/austin-chronicle', function (req, res) {
   console.log(req.body);
   var incomingKey = req.body.incomingKey;
   console.log("Key is: " + incomingKey);

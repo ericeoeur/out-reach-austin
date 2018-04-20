@@ -157,7 +157,7 @@ setAvatarUrl = (image) => {
     console.log("click chroncile action called");
     console.log(this.props.match.params.id);
 
-      axios.post("http://localhost:5000/",{
+      axios.post("/austin-chronicle",{
         incomingKey: this.props.match.params.id
       }).then((response)=> {
          console.log("Data submitted successfully");
