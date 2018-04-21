@@ -40,8 +40,12 @@ const config = {
 };
 firebase.initializeApp(config);
 
-
-// Grab the incoming key from EventDetail.js... i hope this works
+const i = 0; 
+var runNext = function (i) {
+  if (i < 1) {
+    console.log("this is i" + i);
+    nightmare = new Nightmare();
+    // Grab the incoming key from EventDetail.js... i hope this works
 app.post('/', function (req, res) {
   console.log(req.body);
   var incomingKey = req.body.incomingKey;
@@ -65,59 +69,67 @@ app.post('/', function (req, res) {
     console.log("Regular Key is " + key);
 
     if (incomingKey) {
-    let end_time1 = snapshot.child(incomingKey).val().end_time1;
-    let event_cost = snapshot.child(incomingKey).val().event_cost;
-    let event_description_long = snapshot.child(incomingKey).val().event_description_long;
-    let event_link = snapshot.child(incomingKey).val().event_link;
-    let event_location = snapshot.child(incomingKey).val().event_location;
-    let event_organizer = snapshot.child(incomingKey).val().event_organizer;
-    let event_title = snapshot.child(incomingKey).val().event_title;
-    let event_type = snapshot.child(incomingKey).val().event_type;
-    let image_link = snapshot.child(incomingKey).val().image_link;
-    let start_date = snapshot.child(incomingKey).val().start_date;
-    let start_time1 = snapshot.child(incomingKey).val().start_time1;
+      let end_time1 = snapshot.child(incomingKey).val().end_time1;
+      let event_cost = snapshot.child(incomingKey).val().event_cost;
+      let event_description_long = snapshot.child(incomingKey).val().event_description_long;
+      let event_link = snapshot.child(incomingKey).val().event_link;
+      let event_location = snapshot.child(incomingKey).val().event_location;
+      let event_organizer = snapshot.child(incomingKey).val().event_organizer;
+      let event_title = snapshot.child(incomingKey).val().event_title;
+      let event_type = snapshot.child(incomingKey).val().event_type;
+      let image_link = snapshot.child(incomingKey).val().image_link;
+      let start_date = snapshot.child(incomingKey).val().start_date;
+      let start_time1 = snapshot.child(incomingKey).val().start_time1;
 
-    //Insert your key from the React EventDetail.js file where "-LAL459TtE_gpBLN7H95" is below
-    for (i=0; i<1; i++) {
-      console.log("thisi s your for loop: " + i);
-      if (incomingKey) {
-      console.log("correct");
-      Nightmare({ show: true })
-        .goto("https://www.austinchronicle.com/event-submission/")
-        .type("#EventName", event_title)
-        .type("#EventCategory", "Arts: Dance")
-        .type("#EventLocation", event_location)
-        .type("#EventPubURL", event_link)
-        .type("#EventMediaName", event_organizer)
-        .type("#EventMediaEmail", "test@gmail.com")
-        .type("#EventMediaPhone", "817-992-5608")
-        .type("#EventCost", event_cost)
-        .type("#EventDescription", event_description_long)
-        // .type("#FromDate", start_date)
-        // .type("#start-time", start_time1)
-        // .type("#end-time", "1:00pm")
-        // .click("#submit-button")
-        .wait("#EventDescription")
-        // .evaluate(function () {
-        //   return document.querySelector("#links a").href;
-        // })
-        //.end()
-        .then(function (result) {
-          console.log("This is the result" + result);
-          incomingKey = null;
-          console.log("this is the new incoming key" + incomingKey);
-          return nightmare.end();
+      //Insert your key from the React EventDetail.js file where "-LAL459TtE_gpBLN7H95" is below
+      for (i = 0; i < 1; i++) {
+        console.log("thisi s your for loop: " + i);
+        if (incomingKey) {
+          console.log("correct");
+          Nightmare({ show: true })
+            .goto("https://www.austinchronicle.com/event-submission/")
+            .type("#EventName", event_title)
+            .type("#EventCategory", "Arts: Dance")
+            .type("#EventLocation", event_location)
+            .type("#EventPubURL", event_link)
+            .type("#EventMediaName", event_organizer)
+            .type("#EventMediaEmail", "test@gmail.com")
+            .type("#EventMediaPhone", "817-992-5608")
+            .type("#EventCost", event_cost)
+            .type("#EventDescription", event_description_long)
+            // .type("#FromDate", start_date)
+            // .type("#start-time", start_time1)
+            // .type("#end-time", "1:00pm")
+            // .click("#submit-button")
+            .wait("#EventDescription")
+            .evaluate(function () {
+              return document.querySelector("#links a").href;
+            })
+            //.end()
+            .then(function (result) {
+              console.log("This is the result" + result);
+              incomingKey = null;
+              console.log("this is the new incoming key" + incomingKey);
+              res.end(); 
+              nightmare.end();
+              return nightmare.end();
 
-        });
-    } else {
-      console.log("incorrect");
-    }
-  };
-};
+            });
+        } else {
+          console.log("incorrect");
+        }
+      };
+    };
 
   })
-
+res.end(); 
 });
+  }
+}
+runNext(0);
+
+
+
 
 app.listen(port, () => {
   console.log(`Nightmare server listening on Port` + port);
